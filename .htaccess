@@ -1,0 +1,5 @@
+Options FollowSymLinks
+RewriteEngine On
+
+RewriteRule ^repair/(.*)$ $repair
+RewriteCond $repair/ !^(index.php|img|css|js|install|update|robots.txt|favicon.ico|update.php)

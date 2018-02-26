@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mammothology Website Template</title>
+    <meta name="description" content="Mammothology Website Template:
+The Website Template is designed to help you create your new website as fast as possible.
+It contains several features out of the box so you don't have to create them yourself, including
+a full user sign-up, login and profile implementation, blogging system and more.">
+    <meta name="author" content="Mammothology">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="bootstrap.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="container" style="padding-top:30px;">
+    <h1>Mammothology Website Template</h1>
+    <p>The Website Template is designed to help you create your new website as fast as possible. It contains several features out of the box so you don't have to create them yourself, including a full user sign-up, login and profile implementation, blogging system and more. All created using the new Twitter Bootstrap 3 CSS framework.</p>
+    <h2>Software Used:</h2>
+    <ul>
+        <li>Codeignitor 2.1.4</li>
+        <li>Twitter Bootstrap 3</li>
+        <li>JQuery</li>
+        <li>Knockout JS</li>
+        <li>MySQL</li>
+    </ul>
+    <h2>Features:</h2>
+    <ul>
+        <li>User Login (+social) & Sign-up</li>
+        <li>Complete Blog implementation using CKEditor, plus Disqus comments</li>
+        <li>Mailchimp and Twitter integration</li>
+        <li>Auto generated FAQ</li>
+        <li>Contact form using Codeigniters email library</li>
+        <li>Privacy and Terms templates</li>
+        <li>User profiles with working profile editing</li>
+        <li>Font Awesome web fonts plus some useful custom CSS</li>
+        <li>Lots of example code and comments to extend and learn from</li>
+    </ul>
+    <h2>Quick Start:</h2>
+    <ul>
+        <li>Extract this zip file to a temporary location</li>
+        <li>Navigate to where you extracted and then the /application/config folder. Open config.php in a text editor</li>
+        <li>At the top of config.php find the line
+            <pre>$config['base_url']	= 'http://localhost/websitetemplate/';</pre>
+            and replace
+            <pre>http://localhost/websitetemplate/</pre>
+            with your website domain name. E.g.
+            <pre>$config['base_url']	= 'http://example.com/';</pre>
+            Don't forget the trailing slash!
+        </li>
+        <li>Save and close config.php and open database.php in a text editor</li>
+        <li>Here you want to input your MySQL database settings. Look for <pre>$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'websitetemplate';</pre>
+            and replace the values with your own settings. E.g. <pre>$db['default']['username'] = 'db_user';
+$db['default']['password'] = 'db_user_password1';
+$db['default']['database'] = 'my_database';</pre>
+        </li>
+        <li>Now go to /application/views/login_page.php and open it in an editor</li>
+        <li>At the top of the file you need to replace
+            <pre>YOUR_APP_ID</pre>
+            with your Facebook App ID if you wish to enable Facebook login.
+        </li>
+        <li>To enable Mailchimp, open application/views/blog_sidebar.php in a text editor.  We need to replace the form action with the one from your own Mailchimp list, which you will find by logging into your Mailchimp account.
+        In blog_sidebar.php look for the following: <pre>form action="http://mammothology.us7.list-manage1.com/subscribe/post?u=2b4825889c50d3df44b1d6d8e&amp;id=9cc545791f"</pre> You must replace between the quotes
+            with the similar looking URL for your own Mailchimp lists.</li>
+        <li>To enable Twitter, in blog_sidebar.php look for the following: <pre>< a class="twitter-timeline" href="https://twitter.com/Mammothology" data-widget-id="356865742269988864">Tweets by @Mammothology< /a></pre>
+        You must replace the href with the URL to your own Twitter profile.  You must create a widget in your <a href="https://twitter.com/settings/widgets">Twitter Settings</a> and use the data-widget-id from the resulting code
+        in place of the data-widget-id you see in blog_sidebar.php.</li>
+        <li>To enable Disqus, open application/views/view_blog_page.php in a text editor and look for the following: <pre>var disqus_shortname = 'mammothology';</pre> You must replace 'mammothology' with the shortname you created for your Disqus account.</li>
+        <li>Upload the entire contents of the zip file (after the above updates) from the temporary location to your website root directory, usually named public_html.
+            <ul>
+                <li>i.e. If your domain is example.com you might extract to /srv/www/example.com/public_html</li>
+                <li>This differs by server and web host so you may need to contact them to find out.</li>
+            </ul>
+        </li>
+        <li>Go to your database admin panel (usually phpMyAdmin) and run the SQL file included, websitetemplate.sql. This creates all your database tables for you. In phpMyAdmin you can do this by selecting your database on the left, clicking the SQL tab and then copy and pasting the contents of skeleton.sql to the SQL tab textbox and clicking 'Go'.</li>
+        <li>Browse to your home page and you should see everything working</li>
+    </ul>
+    <h2>Customizing</h2>
+    <p>The Website Template is designed as a starting point for your own web development therefore it's expected you will want to customize various aspects.</p>
+    <h4>User Login</h4>
+    <p>The user login system is a simple email & password combination. The password has basic SHA1 + salt encryption which you may want to improve upon if you are building a large site. The login system also supports a password reset function which will email the user with a reset link they can use to reset their password. Again, if you require a more secure system it is recommended you improve the reset feature to your liking.</p>
+    <h4>Emails</h4>
+    <p>You can send customized emails using the templates in /views/emails. Currently there is only one defined for the reset password email which you will want to customize to include your own website name. You will notice the templates are build like simple PHP/HTML webpages with the dynamic values injected using Codeigniters parser library. This code is in /models/util_model.php</p>
+    <p>The contact form will send an email to the address you pass as a parameter. The code for this is in /controllers/about/send_message. You will need to update this to your own email address.</p>
+    <h4>Profile</h4>
+    <p>The user profile section is included as an example of how you might wish to create user profiles. It is fully working with the user_profiles table in the database SQL provided. If you wish to add/remove user profile fields it is suggested you follow the same format as the ones provided to make it easier to do. Simply add or remove the column from the database table, update the user_model.php and the profile code in profile.php, edit_profile_page.php, profile_page.php and the corresponding Javascript files</p>
+    <h4>Blog</h4>
+    <p>The blog included is a paginated flow of posts with a place for admins to add/edit posts. If you want to enable editing and creation of posts you must set the 'isAdmin' flag in the database user table to 1. The blog home page will show up to 500 character summaries of each post and the titles are clickable to view the entire post on it's own page.
+    The blog sidebar contains an email signup for a Mailchimp list which you should edit to point to your own Mailchimp list.  It also contains a Twitter widget which you should also replace with your own settings by first creating a new widget on Twitter.com and following the instructions.<br/>
+    On individual posts you will also see comments powered by Disqus.  Simply change the shortcode from 'mammothology' to your own account shortcode and the comments will be setup for you.</p>
+    <h4>F.A.Q</h4>
+    <p>All you need to do to add new items to the auto-generated FAQ is to add new list elements to the "faq-list" using the same format as the example items and that's it. The searching and generating of numbers is automatic.</p>
+    <h2>Support:</h2>
+    <p>Please bear in mind the Website Template does require some basic coding knowledge. Just enough to change a couple of values in 4 files and run a SQL file on your MySQL database. Don't worry though, this is all thoroughly documented!</p>
+    <p>You can get support in our support forums at
+        <a href="http://mammothology.com/forums">http://mammothology.com/forums</a></p>
+</div>
+</body>
+</html>

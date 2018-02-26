@@ -1,0 +1,91 @@
+html[dir="rtl"] #sidebar {
+    right: 0;
+    left: auto;
+}
+
+html[dir="rtl"] #main-content {
+    margin-left: 0;
+    margin-right: 212px;
+}
+
+html[dir="rtl"] header.header .sidebar-toggle-box {
+    right: -30px;
+    left: auto;
+}
+
+html[dir="rtl"] header.header .sidebar-toggle-box .fa {
+    right: 10px;
+    padding: 18px;
+}
+
+html[dir="rtl"] header div.welcome {
+    float: left;
+    margin: 0;
+}
+
+html[dir="rtl"] header.header a.logo {
+    float: right;
+    margin-left: 0px;
+    margin-right: 90px;
+}
+html[dir="rtl"] #main-content h2 {
+    border-radius: 0 0 0 15px;
+    margin: 0px -17px 15px 0;
+}
+
+html[dir="rtl"] .iconic-input i {
+    float: left;
+    left: 15px;
+    right: auto;
+}
+
+html[dir="rtl"] .checkbox input[type=checkbox]  {
+    float: right;
+    padding-left: 10px;
+}
+
+
+html[dir="rtl"] .checkbox label {
+    padding: 0 20px 0 0;
+}
+
+html[dir="rtl"] .dataTables_paginate ul {
+    padding: 0 0;
+}
+
+html[dir="rtl"] .dataTables_paginate li.next a {
+    border-radius: 20px 0 0 20px;
+}
+
+
+html[dir="rtl"] .dataTables_paginate li.prev a {
+
+    border-radius: 0 20px 20px 0;
+}
+
+html[dir="rtl"] .modal-header .close {
+    float: left;
+}
+
+html[dir="rtl"] .modal-body .flatb i {
+    left: 10px;
+    right: auto;
+}
+
+html[dir="rtl"] .bio-row p span.bold i {
+    margin: -10px -15px -10px 
+        10px;
+}
+
+html[dir="rtl"] #obj .btn-group>.btn:last-child:not(:first-child) {
+    border-radius: 5px 0 0 5px
+}
+
+html[dir="rtl"] #obj .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0 5px 5px 0;
+}
+
+html[dir="rtl"] .date_pc .add-on button {
+    margin-right: -31px;
+    left: 0;
+}
