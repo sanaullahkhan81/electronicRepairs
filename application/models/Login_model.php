@@ -34,6 +34,19 @@ class Login_model extends CI_Model
         return false;
     }
 
+    public function getUserData($email, $password){
+        $this->db->where('admin_user', $email);
+        $this->db->where('admin_password', $password);
+        $query = $this->db->get('impostazioni', 1);
+
+        if ($query->num_rows() == 1) {
+            $data = $query->result_array();
+            return array('user_id'=>$data[0]['id'],'user_type'=>$data[0]['user_type']);
+        }
+
+        return false;
+    }
+    
 	/*------------------------------------------------------------------------
 	| CHECK IF EMAIL EXISTS
 	| @param email

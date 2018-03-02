@@ -24,7 +24,7 @@ class Status extends CI_Controller
         $this->load->model('Impostazioni_model');
         $this->lang->load('global', $this->Impostazioni_model->get_lingua());
     }
-	
+    
 	// SHOW THE STATUS PAGE //
     public function index()
     {
@@ -36,9 +36,10 @@ class Status extends CI_Controller
     public function ottieni_stato()
     {
         $codice = $this->input->post('codice', true);
-
+        $tablePrefix = 'store_'.$this->session->userdata('user_id')."_";
+        $tableName = $tablePrefix.'oggetti';
         $data = array();
-        $query = $this->db->get_where('oggetti', array('codice' => $codice));
+        $query = $this->db->get_where($tableName, array('codice' => $codice));
         if ($query->num_rows() > 0 && strlen($codice) > 3) {
             $data = $query->row_array();
             echo json_encode($data);

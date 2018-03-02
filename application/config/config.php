@@ -28,7 +28,7 @@ $config['businessname'] = "YourBusinessName";
 | %CULONAME%
 
 */
-$config['base_url']	= 'http://epbuys.co.uk/repair/';
+$config['base_url']	= 'http://electronicrepairs.local';
 
 /*
 |--------------------------------------------------------------------------

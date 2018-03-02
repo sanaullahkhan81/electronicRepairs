@@ -62,6 +62,7 @@ $lang['o_in_corso'] = 'orders in progress';
 $lang['clienti'] = 'Customers';
 $lang['a_riparazione'] = 'Add reparation';
 $lang['a_ordine'] = 'Insert order';
+$lang['manage_users'] = 'Manage Users';
 /* TABLE HOME PAGE */
 $lang['o_e_r_titolo'] = 'Orders & Reparations';
 $lang['ID_t'] = 'ID';
@@ -282,3 +283,8 @@ $lang['transition_title'] = 'Disable transitions while loading pages';
 $lang['transition_check'] = 'Yes, I want to disable them';
 
 $lang['timezones_title'] = 'Timezone';
+
+$lang['password'] = 'Password';
+$lang['usertype'] = 'User Type';
+$lang['usermodal_title'] = 'Add New User';
+$lang['usermodal_title_edit'] = 'Edit User';

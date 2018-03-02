@@ -490,3 +490,93 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
     </div>
 </div>
 </div>
+
+<!-- ============= MODAL ADD EDIT USERS ============= -->
+<div class="modal fade" id="manageUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="titleUser"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <p class="tips custip"></p>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('nome');?></label>
+                                    <div class="iconic-input"><i class="fa  fa-user"></i>
+                                        <input id="nome1" type="text" class="validate form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('cognome');?></label>
+                                    <div class="iconic-input"><i class="fa  fa-user"></i>
+                                        <input id="cognome1" type="text" class="validate form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('indirizzo');?></label>
+                                    <div class="iconic-input"><i class="fa fa-road"></i>
+                                        <input id="indirizzo1" type="text" class="validate form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('citta');?></label>
+                                    <div class="iconic-input"><i class="fa fa-globe"></i>
+                                        <input id="citta1" type="text" class="validate form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('Telefono_t');?></label>
+                                    <div class="iconic-input"><i class="fa fa-phone"></i>
+                                        <input id="telefono1" type="text" class="validate form-control" data-mask="(999) 999-9999">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('email');?></label>
+                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
+                                        <input id="email1" type="email" class="validate form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('vat');?></label>
+                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
+                                        <input id="vat1" class="validate form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('cf');?></label>
+                                    <input id="cf1"  class="validate form-control"></textarea>
+                            </div>
+                            </div>
+                        <div class="input-field col-lg-12">
+                            <div class="form-group">
+                                <label><?=$this->lang->line('Commenti_t');?></label>
+                                <textarea class="form-control" id="commentiu1" rows="6"></textarea>
+                            </div>
+                        </div>
+                        </form>
+                </div>
+            </div>
+            <div class="modal-footer" id="footerClienti1"> </div>
+        </div>
+    </div>
+</div>
+</div>

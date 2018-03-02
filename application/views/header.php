@@ -110,6 +110,16 @@
 								<span><?=$this->lang->line('impostazioni');?></span>
 							</a>
 						</li>
+                                                <?php if($this->session->userdata('user_type') == 'admin'){ ?>
+                                                <li>
+							<a class="hvr-bounce-to-right <?php if ('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('manageusers/')) {
+    echo 'active';
+} ?>" href="<?=site_url('manageusers/'); ?>">
+								<i class="fa fa-user-plus"></i>
+                                                                <span><?=$this->lang->line('manage_users');?></span>
+							</a>
+						</li>
+                                                <?php } ?>
                         <li class="logout">
                             <a class="hvr-bounce-to-right" href="<?=site_url('login/logout'); ?>">
                                 <i class="fa fa-key"></i>

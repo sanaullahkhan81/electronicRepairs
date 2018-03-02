@@ -23,6 +23,7 @@ class Login extends CI_Controller
         $this->load->model('Gestione_model');
         $this->load->model('Impostazioni_model');
         $this->lang->load('global', $this->Impostazioni_model->get_lingua());
+        //$this->load->library('session');
     }
 
 	// SHOW THE LOGIN PAGE //
@@ -46,6 +47,9 @@ class Login extends CI_Controller
         if ($isValid) {
             $this->session->set_userdata('LoggedIn', true);
             $this->session->set_userdata('email', $email);
+            $userData = $this->Login_model->getUserData($email, $password);
+            $this->session->set_userdata('user_type', $userData['user_type']);
+            $this->session->set_userdata('user_id', $userData['user_id']);
             echo true;
         } else {
             echo false;
