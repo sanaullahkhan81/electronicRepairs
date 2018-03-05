@@ -1,14 +1,4 @@
 <?php
-
-/**
- * Login
- *
- *
- * @package		FixBook
- * @category	Controller
- * @author		Luigi Verzì
-*/
-
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -30,7 +20,7 @@ class Employee extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('LoggedIn')) {
-            redirect('profile');
+            redirect('');
         } else {
             $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
             $this->load->view('employee_login', $data);
