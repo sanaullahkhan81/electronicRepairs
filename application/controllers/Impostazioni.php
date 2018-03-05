@@ -32,7 +32,7 @@ class Impostazioni extends CI_Controller
         $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
         $data['timezones'] = $this->Impostazioni_model->get_timezones_list();
         $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
-        echo  $this->session->userdata('LoggedIn')."========================";
+        
         if ($this->session->userdata('LoggedIn')) {
             
             $this->load->view('impostazioni_page', $data);

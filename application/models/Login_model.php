@@ -33,15 +33,33 @@ class Login_model extends CI_Model
 
         return false;
     }
+    
+    public function emplyee_login($employeeCode){
+        $this->db->where('employee_login_code', $employeeCode);
+        $query = $this->db->get('impostazioni', 1);
 
-    public function getUserData($email, $password){
-        $this->db->where('admin_user', $email);
-        $this->db->where('admin_password', $password);
+        if ($query->num_rows() == 1) {
+            $this->load->helper('cookie');
+            $this->input->cookie('admin', TRUE);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUserData($email, $password, $isEmployee = false){
+        if($isEmployee == true){
+            $this->db->where('employee_login_code', $email);
+        }else{
+            $this->db->where('admin_user', $email);
+            $this->db->where('admin_password', $password);
+        }
         $query = $this->db->get('impostazioni', 1);
 
         if ($query->num_rows() == 1) {
             $data = $query->result_array();
-            return array('user_id'=>$data[0]['id'],'user_type'=>$data[0]['user_type']);
+            return array('user_id'=>$data[0]['id'],'user_type'=>$data[0]['user_type'], 
+                         'store_id'=>$data[0]['store_id'], 'email'=>$data[0]['admin_user']);
         }
 
         return false;

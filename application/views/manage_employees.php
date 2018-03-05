@@ -4,7 +4,7 @@
 	</script>
 <link rel="stylesheet" href="<?=site_url('assets/data-tables/DT_bootstrap.css'); ?>" />
 <script type="text/javascript" src="<?=site_url('home/js/validate'); ?>"></script>
-<script type="text/javascript" src="<?=site_url('/js/manage_users.js'); ?>"></script>
+<script type="text/javascript" src="<?=site_url('/js/manage_employee.js'); ?>"></script>
 <script type="text/javascript" src="<?=site_url('home/js/home'); ?>"></script>
 
 	<!--main content start-->
@@ -19,12 +19,12 @@
                             <li class="med">
 								<a href="clienti">
 									<i class=" fa fa-user text-muted"></i>
-									<?=$total_users; ?> <?=$this->lang->line('store');?>
+									<?=$total_users; ?> <?=$this->lang->line('employee');?>
 								</a>
 				            </li>
                             <li class="med">
-								<a href="#manageUserModal" data-toggle="modal" class="add_user">
-								    <i class=" fa fa-plus-circle text-success"></i> <?=$this->lang->line('add_store');?>
+								<a href="#manageEmployeeModal" data-toggle="modal" class="add_employee">
+								    <i class=" fa fa-plus-circle text-success"></i> <?=$this->lang->line('add_employee');?>
 								</a>
                             </li>
                         </ul>
@@ -42,10 +42,10 @@
                             <table class="display compact table table-bordered table-striped" id="dynamic-table">
 								<thead>
 									<tr>
-										<th><?=$this->lang->line('store_name');?></th>
-                                                                                <th><?=$this->lang->line('store_code');?></th>
+										<th><?=$this->lang->line('employee_name');?></th>
+                                                                                <th><?=$this->lang->line('employee_sur_name');?></th>
+                                                                                <th><?=$this->lang->line('employee_login_code');?></th>
 										<th><?=$this->lang->line('email');?></th>
-                                                                                <th><?=$this->lang->line('password');?></th>
 										<th><?=$this->lang->line('Telefono_t');?></th>
 										<th><?=$this->lang->line('store_address');?></th>
                                                                                 <th><?=$this->lang->line('Azioni_t');?></th>
@@ -54,10 +54,10 @@
 						
 								<tfoot>
 									<tr>
-										<th><?=$this->lang->line('store_name');?></th>
-                                                                                <th><?=$this->lang->line('store_code');?></th>
+										<th><?=$this->lang->line('employee_name');?></th>
+                                                                                <th><?=$this->lang->line('employee_sur_name');?></th>
+                                                                                <th><?=$this->lang->line('employee_login_code');?></th>
 										<th><?=$this->lang->line('email');?></th>
-                                                                                <th><?=$this->lang->line('password');?></th>
 										<th><?=$this->lang->line('Telefono_t');?></th>
 										<th><?=$this->lang->line('store_address');?></th>
                                                                                 <th><?=$this->lang->line('Azioni_t');?></th>
@@ -85,7 +85,7 @@
 
 <script>
     jQuery('#dynamic-table').dataTable({
-        "ajax": "<?=base_url('manageusers/get_users_list');?>",
+        "ajax": "<?=base_url('manageemployees/get_employee_list');?>",
         "order": [[ 0, "desc" ]],
         "lengthMenu": [[50, 100, 200, -1], [50, 100, 200, "All"]],
         "language": {
@@ -104,13 +104,13 @@
         },
         responsive: true,
         "columns": [{
-            "data": "storename"
+            "data": "name"
         }, {
-            "data": "storecode"
+            "data": "lastname"
+        }, {
+            "data": "login"
         }, {
             "data": "email"
-        }, {
-            "data": "password"
         }, {
             "data": "phone"
         }, {
@@ -121,4 +121,4 @@
     });
 </script>
 
-		<?php require 'footer.php'; ?>
+<?php require 'footer.php'; ?>

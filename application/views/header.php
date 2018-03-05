@@ -119,6 +119,15 @@
                                                                 <span><?=$this->lang->line('manage_users');?></span>
 							</a>
 						</li>
+                                                <?php }else if($this->session->userdata('user_type') == 'store'){ ?>
+                                                <li>
+							<a class="hvr-bounce-to-right <?php if ('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('manageemployees/')) {
+    echo 'active';
+} ?>" href="<?=site_url('manageemployees/'); ?>">
+								<i class="fa fa-user-plus"></i>
+                                                                <span><?=$this->lang->line('manage_employee');?></span>
+							</a>
+						</li>
                                                 <?php } ?>
                         <li class="logout">
                             <a class="hvr-bounce-to-right" href="<?=site_url('login/logout'); ?>">

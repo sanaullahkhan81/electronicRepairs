@@ -36,7 +36,7 @@ class Status extends CI_Controller
     public function ottieni_stato()
     {
         $codice = $this->input->post('codice', true);
-        $tablePrefix = 'store_'.$this->session->userdata('user_id')."_";
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array();
         $query = $this->db->get_where($tableName, array('codice' => $codice));

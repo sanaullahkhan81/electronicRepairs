@@ -506,33 +506,33 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                         <form class="col s12">
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('nome');?></label>
+                                    <label><?=$this->lang->line('store_name');?></label>
                                     <div class="iconic-input"><i class="fa  fa-user"></i>
-                                        <input id="nome1" type="text" class="validate form-control" required>
+                                        <input id="store_name" type="text" class="validate form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('cognome');?></label>
+                                    <label><?=$this->lang->line('store_code');?></label>
                                     <div class="iconic-input"><i class="fa  fa-user"></i>
-                                        <input id="cognome1" type="text" class="validate form-control" required>
+                                        <input id="store_code" type="text" class="validate form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('indirizzo');?></label>
+                                    <label><?=$this->lang->line('store_username');?></label>
                                     <div class="iconic-input"><i class="fa fa-road"></i>
-                                        <input id="indirizzo1" type="text" class="validate form-control">
+                                        <input id="store_username" type="text" class="validate form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('citta');?></label>
+                                    <label><?=$this->lang->line('store_password');?></label>
                                     <div class="iconic-input"><i class="fa fa-globe"></i>
-                                        <input id="citta1" type="text" class="validate form-control">
+                                        <input id="store_password" type="text" class="validate form-control">
                                     </div>
                                 </div>
                             </div>
@@ -540,42 +540,92 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 <div class="form-group">
                                     <label><?=$this->lang->line('Telefono_t');?></label>
                                     <div class="iconic-input"><i class="fa fa-phone"></i>
-                                        <input id="telefono1" type="text" class="validate form-control" data-mask="(999) 999-9999">
+                                        <input id="store_phone" type="text" class="validate form-control" data-mask="(999) 999-9999">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('store_address');?></label>
+                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
+                                        <input id="store_address" class="validate form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+            <div class="modal-footer" id="footerManageUser"> </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ============= MODAL ADD EDIT EMPLOYEES ============= -->
+<div class="modal fade" id="manageEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="titleEmployee"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <p class="tips custip"></p>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('employee_name');?></label>
+                                    <div class="iconic-input"><i class="fa  fa-user"></i>
+                                        <input id="employee_name" type="text" class="validate form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 input-field">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('employee_sur_name');?></label>
+                                    <div class="iconic-input"><i class="fa  fa-user"></i>
+                                        <input id="employee_lastname" type="text" class="validate form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><?=$this->lang->line('employee_login_code');?></label>
+                                    <div class="iconic-input"><i class="fa fa-road"></i>
+                                        <input id="employee_logincode" type="text" class="validate form-control" placeholder="code will generate automatically and you can see after save" readonly="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('email');?></label>
-                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
-                                        <input id="email1" type="email" class="validate form-control">
+                                    <div class="iconic-input"><i class="fa fa-globe"></i>
+                                        <input id="employee_email" type="text" class="validate form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('vat');?></label>
-                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
-                                        <input id="vat1" class="validate form-control">
+                                    <label><?=$this->lang->line('Telefono_t');?></label>
+                                    <div class="iconic-input"><i class="fa fa-phone"></i>
+                                        <input id="employee_phone" type="text" class="validate form-control" data-mask="(999) 999-9999">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6 input-field">
                                 <div class="form-group">
-                                    <label><?=$this->lang->line('cf');?></label>
-                                    <input id="cf1"  class="validate form-control"></textarea>
+                                    <label><?=$this->lang->line('store_address');?></label>
+                                    <div class="iconic-input"><i class="fa fa-envelope"></i>
+                                        <input id="employee_address" class="validate form-control">
+                                    </div>
+                                </div>
                             </div>
-                            </div>
-                        <div class="input-field col-lg-12">
-                            <div class="form-group">
-                                <label><?=$this->lang->line('Commenti_t');?></label>
-                                <textarea class="form-control" id="commentiu1" rows="6"></textarea>
-                            </div>
-                        </div>
                         </form>
                 </div>
             </div>
-            <div class="modal-footer" id="footerClienti1"> </div>
+            <div class="modal-footer" id="footerManageEmployee"> </div>
         </div>
     </div>
 </div>

@@ -44,7 +44,7 @@ class Gestione_model extends CI_Model
             'send_email' => $send_email,
             'email' => $email
         );
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $this->db->insert($tableName, $data);
         $id = $this->db->insert_id();
@@ -73,7 +73,7 @@ class Gestione_model extends CI_Model
 	*/
     public function inserisci_cliente($nome, $cognome, $indirizzo, $citta, $telefono, $email, $commenti, $vat, $cf)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $data = array(
             'nome' => $nome,
@@ -99,7 +99,7 @@ class Gestione_model extends CI_Model
 	*/
     public function lista_oggetti($id_nome = null)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array();
         $this->db->order_by('Id', 'desc');
@@ -119,7 +119,7 @@ class Gestione_model extends CI_Model
 	*/
     public function lista_clienti()
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $data = array();
         $this->db->order_by('id', 'desc');
@@ -139,7 +139,7 @@ class Gestione_model extends CI_Model
 	*/
     public function conta_clienti()
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->from($tableName);
 
@@ -154,7 +154,7 @@ class Gestione_model extends CI_Model
 	*/
     public function conta_ordini()
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $this->db->where(array('tipo' => 1, 'status' => 1));
         $this->db->from($tableName);
@@ -170,7 +170,7 @@ class Gestione_model extends CI_Model
 	*/
     public function conta_riparazioni()
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $this->db->where(array('tipo' => 2, 'status' => 1));
         $this->db->from($tableName);
@@ -224,7 +224,7 @@ class Gestione_model extends CI_Model
             $this->send_email( $email, $impostazioni[0]['r_chiusura'], $nominativo, $modello, $codice, $id);
         }
         
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         
         $this->db->where('ID', $id);
@@ -240,7 +240,7 @@ class Gestione_model extends CI_Model
 	*/
     public function salva_cliente($nome, $cognome, $indirizzo, $citta, $telefono, $id, $email, $commenti, $vat, $cf)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $data = array(
             'nome' => $nome,
@@ -267,7 +267,7 @@ class Gestione_model extends CI_Model
     {
         $data = array();
         $data1 = array();
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $this->db->order_by('Id', 'asc');
         $query = $this->db->get($tableName);
@@ -321,7 +321,7 @@ class Gestione_model extends CI_Model
 	*/
     public function trova_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array();
         $query = $this->db->get_where($tableName, array('ID' => $id));
@@ -340,7 +340,7 @@ class Gestione_model extends CI_Model
 	*/
     public function trova_cliente($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $data = array();
         $query = $this->db->get_where($tableName, array('ID' => $id));
@@ -360,7 +360,7 @@ class Gestione_model extends CI_Model
     public function number_from_id($id)
     {
         $data = array();
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->from($tableName);
         $this->db->where('id', $id);
@@ -384,7 +384,7 @@ class Gestione_model extends CI_Model
     public function email_from_id($id)
     {
         $data = array();
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->from($tableName);
         $this->db->where('id', $id);
@@ -410,7 +410,7 @@ class Gestione_model extends CI_Model
         $value = $this->db->escape_like_str($nomen);
 
         $data = array();
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->from($tableName);
         $this->db->where("CONCAT(nome, ' ', cognome) LIKE '%".$value."%'", null, false);
@@ -434,7 +434,7 @@ class Gestione_model extends CI_Model
     public function name_from_id($id)
     {
         $data = array();
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->from($tableName);
         $this->db->where('id', $id);
@@ -457,7 +457,7 @@ class Gestione_model extends CI_Model
 	*/
     public function inriparazione_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array(
             'tipo' => 2,
@@ -474,7 +474,7 @@ class Gestione_model extends CI_Model
 	*/
     public function completa_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array(
             'status' => 0,
@@ -492,7 +492,7 @@ class Gestione_model extends CI_Model
 	*/
     public function approva_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array(
             'status' => 1,
@@ -509,7 +509,7 @@ class Gestione_model extends CI_Model
 	*/
     public function daconsegnare_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $data = array(
             'status' => 2,
@@ -603,7 +603,7 @@ class Gestione_model extends CI_Model
 	*/
     public function elimina_oggetto($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
         $this->db->delete($tableName, array('ID' => $id));
     }
@@ -616,7 +616,7 @@ class Gestione_model extends CI_Model
 	*/
     public function elimina_cliente($id)
     {
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?'store_'.$this->session->userdata('user_id')."_":'';
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'clienti';
         $this->db->delete($tableName, array('id' => $id));
     }
