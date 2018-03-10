@@ -23,6 +23,8 @@ if (!$impostazioni[0]['showcredit']) {
 <script><?php include(FCPATH.'js/common-scripts.js'); ?></script>
 <link href="<?=site_url('assets/select2/select2.min.css'); ?>" rel="stylesheet" />
 <script><?php include(FCPATH.'assets/select2/select2.min.js'); ?></script>
+<script><?php include(FCPATH.'js/signature_pad.js');?></script>
+<script><?php include(FCPATH.'js/app.js');?></script>
 <script>
 	;(function($){
 		$("#lingua").select2({placeholder: "<?=$this->lang->line('seleziona_lingua_select');?>"});

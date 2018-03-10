@@ -42,7 +42,7 @@ jQuery(document).ready(function() {
         jQuery('#commenti1').val('');
         jQuery('#sms').prop('checked', false);
         jQuery('#send_email').prop('checked', false);
-
+        
         $(".modal-content .custom").each(function() {
             $(this).val('');
         });
@@ -54,7 +54,10 @@ jQuery(document).ready(function() {
             jQuery('#tit').html('<?= lang('js_nuovo_ord'); ?>');
             jQuery('#pezzo1').attr("disabled", false);
         }
-
+        
+        jQuery('#signature_image').hide();
+        jQuery('#signature-pad').show();
+                
         jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"> <select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(8) + "\" placeholder=\"<?= lang('codice'); ?>\"><label style=\"float:left;\">Engineer code</label><input id=\"engineer_code\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(10) + "\" placeholder=\"Secret code (For Engineer check)\"></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button><button id='submitOR' class='btn btn-success' data-tipo=" + tipo + " data-modo='apri'><i class=\"fa fa-plus-circle\"></i> <?= lang('js_aggiungi'); ?></a></div>");
     });
 
@@ -73,6 +76,7 @@ jQuery(document).ready(function() {
         var codice = jQuery('#codice').val();
         var status = jQuery('#status_edit').val();
         var engineer_code = jQuery('#engineer_code').val();
+        var sig_image = jQuery('#sig_img_name').val();
         var custom = {};
 
         $(".modal-content .custom").each(function() {
@@ -104,7 +108,7 @@ jQuery(document).ready(function() {
 
             if (modo == "apri") {
                 url = base_url + "home/apri_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -124,7 +128,7 @@ jQuery(document).ready(function() {
                 });
             } else {
                 url = base_url + "home/modifica_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -372,8 +376,17 @@ jQuery(document).ready(function() {
                         jQuery('#mo'+id_field).val(val_field);
                     });
                 }
-
                 
+                if(data.signature_image == '' || data.signature_image == 'null'){
+                    jQuery('#sig_img_name').val(data.signature_image);
+                    jQuery('#signature_image').hide();
+                    jQuery('#signature-pad').show();
+                }else{
+                    jQuery('#signature_image').attr('src', '/uploads/'+data.signature_image);
+                    jQuery('#sig_img_name').val(data.signature_image);
+                    jQuery('#signature_image').show();
+                    jQuery('#signature-pad').hide();
+                }
                 if (data.sms == 1)
                     jQuery('#sms').prop('checked', true);
                 else

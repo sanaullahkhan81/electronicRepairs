@@ -241,12 +241,13 @@ class Home extends CI_Controller
             $email = $this->Gestione_model->email_from_id($idnominativo);
             $token = $this->input->post('token', true);
             $engineer_code = $this->input->post('engineer_code', true);
+            $sig_image = $this->input->post('sig_image', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code);
+            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image);
 
             echo json_encode($data);
         } else {
@@ -277,13 +278,14 @@ class Home extends CI_Controller
             $send_email = $this->input->post('send_email', true);
             $email = $this->Gestione_model->email_from_id($idnominativo);
             $engineer_code = $this->input->post('engineer_code', true);
+            $sig_image = $this->input->post('sig_image', true);
             $token = $this->input->post('token', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code);
+            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image);
         } else {
             redirect('');
         }
@@ -374,6 +376,21 @@ class Home extends CI_Controller
         $comment = $this->input->post('comment', true);
         $this->Gestione_model->save_comment($id, $type, $comment);
         echo json_encode(array('status'=>'success'));
+    }
+    
+    public function save_signature(){
+        $configUpload['upload_path']    = './uploads/';                 #the folder placed in the root of project
+        $configUpload['allowed_types']  = '*';       #allowed types description
+        $configUpload['file_name'] = 'signature_'.time().".png";
+        $this->load->library('upload', $configUpload);                  #init the upload class
+        
+        if(!$this->upload->do_upload('signature')){
+            echo 'false'; return;
+            $uploadedDetails    = $this->upload->display_errors();
+        }else{
+            $uploadedDetails    = $this->upload->data();    
+        }
+        echo $uploadedDetails['file_name'];
     }
 }
 

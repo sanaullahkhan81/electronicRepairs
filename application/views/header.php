@@ -34,6 +34,11 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+            <link rel="stylesheet" href="<?=site_url('css/signature-pad.css'); ?>">
+
+            <!--[if IE]>
+              <link rel="stylesheet" type="text/css" href="<?=site_url('css/ie9.css'); ?>">
+            <![endif]-->
 	</head>
 
                 

@@ -152,6 +152,7 @@ Thank you for your Visit
   `engineer_code` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `engineer_status` int(11) DEFAULT NULL,
   `engineer_comments` longtext COLLATE utf8_unicode_ci,
+  `signature_image` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $this->db->query($query1);

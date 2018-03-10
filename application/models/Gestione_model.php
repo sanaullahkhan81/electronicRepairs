@@ -22,7 +22,7 @@ class Gestione_model extends CI_Model
 	| ADD THE ORDER/REPARATION TO DB
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type, txt 1 or 0, comments
 	|--------------------------------------------------------------------------*/
-    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code)
+    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '')
     {
         $data = array(
             'Nominativo' => $nominativo,
@@ -43,7 +43,8 @@ class Gestione_model extends CI_Model
             'dataApertura' => date('Y-m-d H:i:s'),
             'send_email' => $send_email,
             'email' => $email,
-            'engineer_code' => $engineer_code
+            'engineer_code' => $engineer_code,
+            'signature_image' => $sig_image,
         );
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
@@ -185,7 +186,7 @@ class Gestione_model extends CI_Model
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type (order or reparation), id, txt 1 or 0, comments
 	|--------------------------------------------------------------------------
 	*/
-    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code)
+    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '')
     {
 
         $custom = $custom;
@@ -208,6 +209,7 @@ class Gestione_model extends CI_Model
             'send_email' => $send_email,
             'email' => $email,
             'engineer_code' => $engineer_code,
+            'signature_image' => $sig_image,
         );
         
         

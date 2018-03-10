@@ -143,7 +143,7 @@
                 </div>
             </section>
         </div>
-
+        
         <?php include('modal_template.php'); ?>
         
 <!-- page end-->

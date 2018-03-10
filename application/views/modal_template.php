@@ -148,13 +148,38 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>
                                         <?= $this->lang->line('Commenti_t');?>
                                     </label>
                                     <textarea class="form-control" id="commenti1" rows="6"></textarea>
                                 </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="hidden" id="sig_img_name" value=""/>
+                                <image id="signature_image" src="" style="display: none;"/>
+                                <div id="signature-pad" class="signature-pad">
+                                    <div class="signature-pad--body">
+                                        <canvas></canvas>
+                                    </div>
+                                    <div class="signature-pad--footer">
+                                        <div class="description">Sign above</div>
+
+                                        <div class="signature-pad--actions">
+                                            <div>
+                                                <button type="button" class="button clear" data-action="clear">Clear</button>
+                                                <button type="button" class="button" data-action="change-color" style="display: none;">Change color</button>
+                                                <button type="button" class="button" data-action="undo" style="display: none;">Undo</button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="button save" data-action="save-png">Save</button>
+                                                <button type="button" class="button save" data-action="save-jpg" style="display: none;">Save as JPG</button>
+                                                <button type="button" class="button save" data-action="save-svg" style="display: none;">Save as SVG</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </form>
                     </div>
