@@ -225,7 +225,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                         <?php } ?>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-6 bio-row fastsms">
+                                <div class="col-md-4 bio-row fastsms">
                                     <div class="form-group commenti">
                                         <label>
                                             <?= $this->lang->line('Fastsms_t');?>
@@ -234,12 +234,27 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                         <button type="button" id="sendsmsfast"><i class="fa fa-check"></i> <?= $this->lang->line('Fastsms_b');?></button>
                                     </div>
                                 </div>
-                                <div class="col-md-6 bio-row textareacom">
+                                <div class="col-md-4 bio-row textareacom">
                                     <div class="form-group commenti">
                                         <label>
                                             <?= $this->lang->line('Commenti_t');?>
                                         </label>
                                         <textarea class="form-control" id="commentic" rows="6" disabled=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 bio-row">
+                                    <div class="form-group commenti">
+                                        <label>
+                                            <?= $this->lang->line('engineer_comments');?>
+                                            <div class="pull-right" id="div_engineer_status">Engineer status: </div>
+                                        </label>
+                                        <div id="conmments_section" style="overflow: auto; height: 135px; border: 1px solid #dddddd">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group commenti">
+                                        <input type="hidden" value="" id="comment_id_num"/>
+                                        <input id="text_comment" type="text" value=""/><input type="button" id="btn_send_comment" value="Send Comment" data-num="">
                                     </div>
                                 </div>
                             </div>

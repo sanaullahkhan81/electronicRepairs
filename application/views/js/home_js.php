@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
             jQuery('#pezzo1').attr("disabled", false);
         }
 
-        jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"> <select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(8) + "\" placeholder=\"<?= lang('codice'); ?>\"></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button><button id='submitOR' class='btn btn-success' data-tipo=" + tipo + " data-modo='apri'><i class=\"fa fa-plus-circle\"></i> <?= lang('js_aggiungi'); ?></a></div>");
+        jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"> <select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(8) + "\" placeholder=\"<?= lang('codice'); ?>\"><label style=\"float:left;\">Engineer code</label><input id=\"engineer_code\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(10) + "\" placeholder=\"Secret code (For Engineer check)\"></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button><button id='submitOR' class='btn btn-success' data-tipo=" + tipo + " data-modo='apri'><i class=\"fa fa-plus-circle\"></i> <?= lang('js_aggiungi'); ?></a></div>");
     });
 
     jQuery(document).on("click", "#submitOR", function() {
@@ -72,6 +72,7 @@ jQuery(document).ready(function() {
         var commenti = jQuery('#commenti1').val();
         var codice = jQuery('#codice').val();
         var status = jQuery('#status_edit').val();
+        var engineer_code = jQuery('#engineer_code').val();
         var custom = {};
 
         $(".modal-content .custom").each(function() {
@@ -123,7 +124,7 @@ jQuery(document).ready(function() {
                 });
             } else {
                 url = base_url + "home/modifica_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -147,6 +148,26 @@ jQuery(document).ready(function() {
         return false;
     });
 
+    jQuery(document).on("click", "#btn_send_comment", function() {
+        if(jQuery('#text_comment').val() == ''){   
+            alert('Please enter comment before save');
+            return false;
+        }
+        var num = jQuery('#comment_id_num').val();
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "home/add_comment",
+            data: "id=" + num + "&type=my" + "&comment=" + jQuery('#text_comment').val(),
+            cache: false,
+            dataType: "json",
+            success: function(data) {
+                var commentHtml = '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: right; margin: 10px; padding: 5px;"><b>My Comment</b><br/>'+jQuery('#text_comment').val()+'</div>';
+                jQuery('#conmments_section').append(commentHtml);
+                jQuery('#text_comment').val('');
+            }
+        });
+    });
+    
     jQuery('.no_cliente').click(function(e) {
         toastr['error']('<?= lang('js_no_cliente'); ?>', '');
 
@@ -185,7 +206,7 @@ jQuery(document).ready(function() {
                     jQuery('#modelloc').html(data.Modello);
                     jQuery('#commentic').html(data.Commenti);
                     jQuery('#cod_rip').html(data.codice);
-
+                    jQuery('#btn_send_comment').data('num', num);
                     jQuery('.show_custom').html('');
 
                     var IS_JSON = true;
@@ -205,7 +226,23 @@ jQuery(document).ready(function() {
                             jQuery('#v'+id_field).html(val_field);
                         });
                     }
-
+                    
+                    var commentHtml = '';
+                    var engineer_comments = $.parseJSON(data.engineer_comments);
+                    
+                    for(i = 0; i < engineer_comments.length; i++){
+                        var obj = engineer_comments[i];
+                        commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b><br/>'+obj.comment+'</div>';
+                    }
+                    jQuery('#conmments_section').html(commentHtml);
+                    jQuery('#comment_id_num').val(num);
+                    
+                    if(data.engineer_status == 1){
+                        $('#div_engineer_status').html('Engineer Status: <span class="label label-mini" style="background: #78CD51; width: auto;">Completed</span>');
+                    }else{
+                        $('#div_engineer_status').html('Engineer Status: <span class="label label-mini" style="background: #41cac0; width: auto;">Im progress</span>');
+                    }
+                    
                     if (data.Tipo == 1)
                         jQuery('#pezzoc').html(data.Pezzo);
                     else
@@ -336,7 +373,7 @@ jQuery(document).ready(function() {
                     });
                 }
 
-
+                
                 if (data.sms == 1)
                     jQuery('#sms').prop('checked', true);
                 else
@@ -347,7 +384,7 @@ jQuery(document).ready(function() {
                 else
                     jQuery('#send_email').prop('checked', false);
 
-                jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"><select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <div class=\"iconic-input nolabel\"><i class=\"fa fa-eye\"></i><input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" + data.codice + "\" placeholder=\"<?= lang('codice'); ?>\"></div></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button> <button id='submitOR' class='btn btn-success' data-tipo=" + data.Tipo + " data-modo='modifica' data-num=" + data.ID + "><i class=\"fa fa-save\"></i> <?= lang('js_save'); ?></button></div>")
+                jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"><select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <div class=\"iconic-input nolabel\"><i class=\"fa fa-eye\"></i><input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" + data.codice + "\" placeholder=\"<?= lang('codice'); ?>\"><label style=\"float:left;\">Engineer code</label><input id=\"engineer_code\" type=\"text\" class=\"validate form-control\" value=\"" +  data. engineer_code + "\" placeholder=\"Secret code (For Engineer check)\"></div></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button> <button id='submitOR' class='btn btn-success' data-tipo=" + data.Tipo + " data-modo='modifica' data-num=" + data.ID + "><i class=\"fa fa-save\"></i> <?= lang('js_save'); ?></button></div>")
                 jQuery('#status_edit option[value="'+data.status+'"]').attr("selected", "selected");
             }
         });

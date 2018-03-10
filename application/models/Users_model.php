@@ -255,10 +255,12 @@ Thank you for your Visit
     
     public function get_employees_list(){
         $data = array();
+        $userId = $this->session->userdata('user_id');
         $this->db->select('impostazioni.id as loginUserId, users_data.id as userId, users_data.*, impostazioni.*');
         $this->db->from('users_data');
         $this->db->join('impostazioni', 'users_data.user_id = impostazioni.id');
         $this->db->where('impostazioni.user_type', 'employee');
+        $this->db->where('impostazioni.store_id', $userId);
         $this->db->order_by('users_data.id', 'desc');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {

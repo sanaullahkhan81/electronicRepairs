@@ -33,10 +33,16 @@ class Impostazioni_model extends CI_Model
 	| GET SETTING LIST
 	| @return Variable with setting
 	|--------------------------------------------------------------------------*/
-    public function lista_impostazioni()
+    public function lista_impostazioni($loggedin = false)
     {
 
         $data = array();
+        if($loggedin == true){
+            if($this->session->userdata('user_id')){
+                $userId = $this->session->userdata('user_id');
+                $this->db->where('id', $userId);
+            }
+        }
         $query = $this->db->get('impostazioni');
         if ($query->num_rows() > 0) {
             $data = $query->result_array();

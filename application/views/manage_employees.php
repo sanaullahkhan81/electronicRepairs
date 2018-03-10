@@ -4,7 +4,7 @@
 	</script>
 <link rel="stylesheet" href="<?=site_url('assets/data-tables/DT_bootstrap.css'); ?>" />
 <script type="text/javascript" src="<?=site_url('home/js/validate'); ?>"></script>
-<script type="text/javascript" src="<?=site_url('/js/manage_employee.js'); ?>"></script>
+<script type="text/javascript" src="<?=site_url('home/js/manage_employee'); ?>"></script>
 <script type="text/javascript" src="<?=site_url('home/js/home'); ?>"></script>
 
 	<!--main content start-->

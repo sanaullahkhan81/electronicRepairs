@@ -34,7 +34,7 @@ class Home extends CI_Controller
     // SHOW THE HOME PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
         if ($this->session->userdata('LoggedIn')) {
             $cookie= array(
@@ -240,12 +240,13 @@ class Home extends CI_Controller
             $send_email = $this->input->post('send_email', true);
             $email = $this->Gestione_model->email_from_id($idnominativo);
             $token = $this->input->post('token', true);
+            $engineer_code = $this->input->post('engineer_code', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email);
+            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code);
 
             echo json_encode($data);
         } else {
@@ -275,13 +276,14 @@ class Home extends CI_Controller
             $custom = $this->input->post('custom', true);
             $send_email = $this->input->post('send_email', true);
             $email = $this->Gestione_model->email_from_id($idnominativo);
+            $engineer_code = $this->input->post('engineer_code', true);
             $token = $this->input->post('token', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email);
+            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code);
         } else {
             redirect('');
         }
@@ -364,6 +366,14 @@ class Home extends CI_Controller
             if($line == $cat) $exist = 1;
         }
         if($exist == 0) echo $this->Impostazioni_model->add_category($cat);
+    }
+    
+    public function add_comment(){
+        $id = $this->input->post('id', true);
+        $type = $this->input->post('type', true);
+        $comment = $this->input->post('comment', true);
+        $this->Gestione_model->save_comment($id, $type, $comment);
+        echo json_encode(array('status'=>'success'));
     }
 }
 

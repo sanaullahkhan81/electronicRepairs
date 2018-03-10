@@ -65,6 +65,7 @@
                             <?=$this->lang->line('desc_riparazione');?>
                         </p>
                         <div class="iconic-input right">
+                            <input type="hidden" name="code_login_type" id="code_login_type" value="status"/>
                             <input id="codice_riparazione" type="text" class="validate form-control" placeholder="<?=$this->lang->line('inp_riparazione');?>" value="">
                         </div>
                     </div>

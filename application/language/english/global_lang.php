@@ -308,3 +308,4 @@ $lang['add_employee'] = 'Add Employee';
 $lang['employee_name'] = 'First Name';
 $lang['employee_sur_name'] = 'Last Name';
 $lang['employee_login_code'] = 'Employee Login Code';
+$lang['engineer_comments'] = 'Engineer Comments';

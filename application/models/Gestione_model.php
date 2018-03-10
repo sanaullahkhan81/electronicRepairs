@@ -22,7 +22,7 @@ class Gestione_model extends CI_Model
 	| ADD THE ORDER/REPARATION TO DB
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type, txt 1 or 0, comments
 	|--------------------------------------------------------------------------*/
-    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false)
+    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code)
     {
         $data = array(
             'Nominativo' => $nominativo,
@@ -42,7 +42,8 @@ class Gestione_model extends CI_Model
             'custom_field' => $custom,
             'dataApertura' => date('Y-m-d H:i:s'),
             'send_email' => $send_email,
-            'email' => $email
+            'email' => $email,
+            'engineer_code' => $engineer_code
         );
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
@@ -184,7 +185,7 @@ class Gestione_model extends CI_Model
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type (order or reparation), id, txt 1 or 0, comments
 	|--------------------------------------------------------------------------
 	*/
-    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email)
+    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code)
     {
 
         $custom = $custom;
@@ -205,7 +206,8 @@ class Gestione_model extends CI_Model
             'status' => $status,
             'codice' => $codice,
             'send_email' => $send_email,
-            'email' => $email
+            'email' => $email,
+            'engineer_code' => $engineer_code,
         );
         
         
@@ -630,6 +632,22 @@ class Gestione_model extends CI_Model
         }
         else {
             return false;
+        }
+    }
+    
+    public function save_comment($id, $type, $comment){
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+        $tableName = $tablePrefix.'oggetti';
+        $query = $this->db->get_where($tableName, array('id' => $id));
+        if ($query->num_rows() > 0) {
+            $data = $query->row_array();            
+            $data = $data['engineer_comments'];
+            $dataComment = json_decode($data);
+            
+            $dataComment[] = array('type'=>$type, 'comment'=>$comment);
+            
+            $this->db->where('ID', $id);
+            $this->db->update($tableName, array('engineer_comments'=>  json_encode($dataComment)));
         }
     }
 }
