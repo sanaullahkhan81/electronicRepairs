@@ -45,6 +45,7 @@ class Gestione_model extends CI_Model
             'email' => $email,
             'engineer_code' => $engineer_code,
             'signature_image' => $sig_image,
+            'engineer_comments' => '',
         );
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
