@@ -664,11 +664,11 @@ class Gestione_model extends CI_Model
     public function getTablePrefixForNonLoggedIn($orderId, $type = 'id'){
         $this->db->order_by("id", "desc");
         if($type == 'status'){
-            $this->db->get_where('order_table_prefix', array('codice'=>$orderId));
+            $query = $this->db->get_where('order_table_prefix', array('codice'=>$orderId));
         }else if($type == 'engineer'){
-            $this->db->get_where('order_table_prefix', array('engineer_code'=>$orderId));
+            $query = $this->db->get_where('order_table_prefix', array('engineer_code'=>$orderId));
         }else{
-            $this->db->get_where('order_table_prefix', array('id'=>$orderId));
+            $query = $this->db->get_where('order_table_prefix', array('id'=>$orderId));
         }
         if ($query->num_rows() > 0) {
             $data = $query->row_array();            
