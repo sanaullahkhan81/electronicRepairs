@@ -109,7 +109,7 @@ jQuery(document).ready(function () {
 					jQuery('#cod_rip').html(data.codice);
                     
 					jQuery('.centre_box.status_box').fadeIn(1000);
-                                    if(codeType == 'engineer'){
+                                    if(codeType == 'engineer' && data.engineer_comments != ''){
                                         var commentHtml = '';
                                         var engineer_comments = $.parseJSON(data.engineer_comments);
 
