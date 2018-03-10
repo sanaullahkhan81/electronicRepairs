@@ -232,13 +232,17 @@ jQuery(document).ready(function() {
                     }
                     
                     var commentHtml = '';
-                    var engineer_comments = $.parseJSON(data.engineer_comments);
+                    if(data.engineer_comments == ''){
                     
-                    for(i = 0; i < engineer_comments.length; i++){
-                        var obj = engineer_comments[i];
-                        commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b><br/>'+obj.comment+'</div>';
+                    }else{
+                        var engineer_comments = $.parseJSON(data.engineer_comments);
+
+                        for(i = 0; i < engineer_comments.length; i++){
+                            var obj = engineer_comments[i];
+                            commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b><br/>'+obj.comment+'</div>';
+                        }
+                        jQuery('#conmments_section').html(commentHtml);
                     }
-                    jQuery('#conmments_section').html(commentHtml);
                     jQuery('#comment_id_num').val(num);
                     
                     if(data.engineer_status == 1){

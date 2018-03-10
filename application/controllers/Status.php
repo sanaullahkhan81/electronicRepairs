@@ -38,7 +38,7 @@ class Status extends CI_Controller
     {
         $codice = $this->input->post('codice', true);
         $codeType = $this->input->post('code_type', true);
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+        $tablePrefix = $this->Gestione_model->getTablePrefixForNonLoggedIn($codice, $codeType);
         $tableName = $tablePrefix.'oggetti';
         $data = array();
         if($codeType == 'status'){
@@ -58,13 +58,15 @@ class Status extends CI_Controller
         $id = $this->input->post('id', true);
         $type = $this->input->post('type', true);
         $comment = $this->input->post('comment', true);
-        $this->Gestione_model->save_comment($id, $type, $comment);
+        $eng_code = $this->input->post('eng_code', true);
+        $this->Gestione_model->save_comment($id, $type, $comment, false, $eng_code);
         echo json_encode(array('status'=>'success'));
     }
     
     public function mark_completed(){
         $id = $this->input->post('id', true);
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+        $eng_code = $this->input->post('eng_code', true);
+        $tablePrefix = $this->Gestione_model->getTablePrefixForNonLoggedIn($eng_code, 'engineer');
         $tableName = $tablePrefix.'oggetti';
         $this->db->where(array('ID' => $id));
         $this->db->update($tableName, array('engineer_status'=>1));

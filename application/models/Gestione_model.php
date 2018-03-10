@@ -63,6 +63,8 @@ class Gestione_model extends CI_Model
             $impostazioni = $this->Impostazioni_model->lista_impostazioni();
             $this->send_email( $email, $impostazioni[0]['r_apertura'], $nominativo, $modello, $codice, $id);
         }
+        
+        $this->db->insert('order_table_prefix', array('order_id'=>$id, 'engineer_code'=>$engineer_code, 'codice'=>$codice, 'table_prefix'=>$tablePrefix));
 
         return $id;
     }
@@ -230,6 +232,8 @@ class Gestione_model extends CI_Model
         
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
+        
+        $this->db->insert('order_table_prefix', array('order_id'=>$id, 'engineer_code'=>$engineer_code, 'codice'=>$codice, 'table_prefix'=>$tablePrefix));
         
         $this->db->where('ID', $id);
         
@@ -637,19 +641,40 @@ class Gestione_model extends CI_Model
         }
     }
     
-    public function save_comment($id, $type, $comment){
-        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+    public function save_comment($id, $type, $comment, $loggedId = true, $code_eng = ''){
+        if($loggedId == false){
+            $tablePrefix = $this->getTablePrefixForNonLoggedIn($code_eng, 'engineer');
+        }else{
+            $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+        }
         $tableName = $tablePrefix.'oggetti';
         $query = $this->db->get_where($tableName, array('id' => $id));
         if ($query->num_rows() > 0) {
             $data = $query->row_array();            
             $data = $data['engineer_comments'];
-            $dataComment = json_decode($data);
+            $dataComment = ($data == '')?array():json_decode($data);
             
             $dataComment[] = array('type'=>$type, 'comment'=>$comment);
             
             $this->db->where('ID', $id);
             $this->db->update($tableName, array('engineer_comments'=>  json_encode($dataComment)));
         }
+    }
+    
+    public function getTablePrefixForNonLoggedIn($orderId, $type = 'id'){
+        $this->db->order_by("id", "desc");
+        if($type == 'status'){
+            $this->db->get_where('order_table_prefix', array('codice'=>$orderId));
+        }else if($type == 'engineer'){
+            $this->db->get_where('order_table_prefix', array('engineer_code'=>$orderId));
+        }else{
+            $this->db->get_where('order_table_prefix', array('id'=>$orderId));
+        }
+        if ($query->num_rows() > 0) {
+            $data = $query->row_array();            
+            $prefix = $data['table_prefix'];
+            return $prefix;
+        }
+        return '';
     }
 }

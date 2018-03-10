@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
             jQuery.ajax({
                 type: "POST",
                 url: base_url + "status/add_comment",
-                data: "id=" + num + "&type=eng" + "&comment=" + jQuery('#text_comment').val(),
+                data: "id=" + num + "&type=eng" + "&comment=" + jQuery('#text_comment').val() + "&eng_code=" + jQuery('#comment_code_eng').val(),
                 cache: false,
                 dataType: "json",
                 success: function(data) {
@@ -43,7 +43,7 @@ jQuery(document).ready(function () {
             jQuery.ajax({
                 type: "POST",
                 url: base_url + "status/mark_completed",
-                data: "id=" + num + "&status=1",
+                data: "id=" + num + "&status=1" + "&eng_code=" + jQuery('#comment_code_eng').val(),
                 cache: false,
                 dataType: "json",
                 success: function(data) {
@@ -119,6 +119,7 @@ jQuery(document).ready(function () {
                                         }
                                         jQuery('#conmments_section').html(commentHtml);
                                         jQuery('#comment_id_num').val(data.ID);
+                                        jQuery('#comment_code_eng').val(data.engineer_code);
                                     }
 				}
 			}
