@@ -125,7 +125,7 @@ Thank you for your Visit
   `data` date NOT NULL,
   `commenti` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $this->db->query($query);
         
         $query1 = "CREATE TABLE `store_".$user_id."_oggetti` (
@@ -149,6 +149,9 @@ Thank you for your Visit
   `custom_field` longtext COLLATE utf8_unicode_ci NOT NULL,
   `send_email` int(11) NOT NULL,
   `email` text COLLATE utf8_unicode_ci NOT NULL,
+  `engineer_code` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `engineer_status` int(11) DEFAULT NULL,
+  `engineer_comments` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $this->db->query($query1);
