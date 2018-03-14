@@ -111,6 +111,7 @@
 								<span><?=$this->lang->line('finanze');?></span>
 							</a>
 						</li>
+                                                <?php if($this->session->userdata('user_type') != 'employee'){ ?>
 						<li>
 							<a class="hvr-bounce-to-right <?php if ('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('impostazioni/')) {
     echo 'active';
@@ -119,6 +120,7 @@
 								<span><?=$this->lang->line('impostazioni');?></span>
 							</a>
 						</li>
+                                                <?php } ?>
                                                 <?php if($this->session->userdata('user_type') == 'admin'){ ?>
                                                 <li>
 							<a class="hvr-bounce-to-right <?php if ('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('manageusers/')) {

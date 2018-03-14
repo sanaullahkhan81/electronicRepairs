@@ -49,7 +49,7 @@
 "data": "<?= date('d/m/Y', strtotime($ogg['dataApertura'])); ?>",
 "telefono": "<?= $ogg['Telefono']; ?>",
 "code": "<?= $ogg['codice']; ?>",
-"azioni": "<a data-dismiss='modal' class='visualizza_or' href='#visualizza_ordini' data-toggle='modal' data-num='<?= $ogg['ID']; ?>'><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button></a><a  data-dismiss='modal' id='modifica' href='#obj' data-toggle='modal' data-num='<?= $ogg['ID']; ?>'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a><a id='elimina' data-num='<?= $ogg['ID']; ?>' data-tipo='<?= $ogg['Tipo']; ?>'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></button></a>"
+"azioni": "<?="<a data-dismiss='modal' class='visualizza_or' href='#visualizza_ordini' data-toggle='modal' data-num='".$ogg['ID']."'><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button></a><a  data-dismiss='modal' id='modifica' href='#obj' data-toggle='modal' data-num='".$ogg['ID']."'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a>".(($this->session->userdata('user_type') != 'employee')?"<a id='elimina' data-num='".$ogg['ID']."' data-tipo='".$ogg['Tipo']."'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></button></a>":'')?>"
 }<?php if ($i < $qnt) {
         echo ',';
     } ?>
@@ -76,7 +76,7 @@
 "indirizzo": "<?=$ogg['indirizzo']; ?>",
 "email": "<?= $ogg['email']; ?>",
 "telefono": "<?= $ogg['telefono']; ?>",
-"azioni": "<a  data-dismiss='modal' class='visualizza' href='#visualizza_clienti' data-toggle='modal' data-num='<?= $ogg['id']; ?>'><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button></a><a  data-dismiss='modal' id='modifica_c' href='#clientimodal' data-toggle='modal' data-num='<?= $ogg['id']; ?>'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a><a id='elimina_c' data-num='<?= $ogg['id']; ?>'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></button></a>"
+"azioni": "<?= "<a  data-dismiss='modal' class='visualizza' href='#visualizza_clienti' data-toggle='modal' data-num='".$ogg['id']."'><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button></a><a  data-dismiss='modal' id='modifica_c' href='#clientimodal' data-toggle='modal' data-num='".$ogg['id']."'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a>".(($this->session->userdata('user_type') != 'employee')?"<a id='elimina_c' data-num='".$ogg['id']."'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></button></a>":'');?>"
 }<?php if ($i < $qnt) {
         echo ',';
     } ?>
