@@ -66,20 +66,20 @@
             
 <table class="printtable printContent" style="width:100%; padding:2px;">
   <tr>
-    <th>Name</th>
-    <td><b><?=$db['Nominativo'];?></b></td>
+    <th>Store Name</th>
+    <td><b><?= (isset($userData['name'])?$userData['name']:$impostazioni['invoice_name']);?></b></td>
+  </tr>
+  <tr>
+    <th>Store Code</th>
+    <td><b><?= (isset($userData['store_code'])?$userData['store_code']:'');?></b></td>
   </tr>
   <tr>
     <th>Description</th>
     <td> <b><?=$db['Guasto'];?></b></td>
   </tr>
   <tr>
-    <th>Telephone:</th>
-    <td><b><?=$db['Telefono'];?></b></td>
-  </tr>
-  <tr>
-    <th> Pro Ref:</th>
-    <td>  <b><?=$db['codice'];?></b></td>
+    <th> Engineer Code:</th>
+    <td>  <b><?=$db['engineer_code'];?></b></td>
   </tr>
   
 </table>            

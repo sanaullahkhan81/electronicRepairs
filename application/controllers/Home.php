@@ -58,11 +58,14 @@ class Home extends CI_Controller
     public function invoice($id,$tipo, $return = false)
     {
         if ($this->session->userdata('LoggedIn')) {
-            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
             $data['db'] = $this->Gestione_model->trova_oggetto($id);
             $data['cliente'] = $this->Gestione_model->trova_cliente($this->Gestione_model->id_from_name($data['db']['Nominativo']));
             $data['valuta'] = $this->Impostazioni_model->get_currency();
             $data['lingua'] = $this->Impostazioni_model->get_lingua();
+            if($tipo == 3){
+                $data['userData'] = $this->Impostazioni_model->getUserData();
+            }
             $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
             if($return)
             {
