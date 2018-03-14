@@ -70,5 +70,6 @@ class Status extends CI_Controller
         $tableName = $tablePrefix.'oggetti';
         $this->db->where(array('ID' => $id));
         $this->db->update($tableName, array('engineer_status'=>1));
+        echo json_encode(array('status'=>'success'));
     }
 }

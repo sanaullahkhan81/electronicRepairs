@@ -67,12 +67,14 @@ class Home extends CI_Controller
             if($return)
             {
                 if($tipo == 1) return $this->load->view('template/invoice_template', $data, true);
-                else return $this->load->view('template/resoconto_template', $data, true);
+                elseif ($tipo == 2) return $this->load->view('template/resoconto_template', $data, true);
+                else return $this->load->view('template/print_label', $data, true);
             }
             else
             {
                 if($tipo == 1) $this->load->view('template/invoice_template', $data);
-                else $this->load->view('template/resoconto_template', $data);
+                elseif ($tipo == 2) return $this->load->view('template/resoconto_template', $data);
+                else  return $this->load->view('template/print_label', $data);
             }
         }
     }

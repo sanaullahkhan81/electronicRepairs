@@ -31,7 +31,9 @@ jQuery(document).ready(function () {
                 cache: false,
                 dataType: "json",
                 success: function(data) {
-                    var commentHtml = '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: left; margin: 10px; padding: 5px;"><b>Store Comment</b><br/>'+jQuery('#text_comment').val()+'</div>';
+                    var d = new Date();
+                    var dateString = formatDate(d);
+                    var commentHtml = '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: left; margin: 10px; padding: 5px;"><b>Engineer Comment</b> ('+dateString+')<br/>'+jQuery('#text_comment').val()+'</div>';
                     jQuery('#conmments_section').append(commentHtml);
                     jQuery('#text_comment').val('');
                 }
@@ -107,6 +109,9 @@ jQuery(document).ready(function () {
                     jQuery('#prezzoc').html(data.Prezzo);
 					jQuery('#telefonoc').html(data.Telefono);
 					jQuery('#cod_rip').html(data.codice);
+                                        jQuery('#comment_id_num').val(data.ID);
+                                        alert(data.engineer_code);
+                                        jQuery('#comment_code_eng').val(data.engineer_code);
                     
 					jQuery('.centre_box.status_box').fadeIn(1000);
                                     if(codeType == 'engineer' && data.engineer_comments != ''){
@@ -118,8 +123,6 @@ jQuery(document).ready(function () {
                                             commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b><br/>'+obj.comment+'</div>';
                                         }
                                         jQuery('#conmments_section').html(commentHtml);
-                                        jQuery('#comment_id_num').val(data.ID);
-                                        jQuery('#comment_code_eng').val(data.engineer_code);
                                     }
 				}
 			}
@@ -127,6 +130,17 @@ jQuery(document).ready(function () {
 	});
 
 });
+
+function formatDate(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return date.getFullYear() + "-" + date.getMonth()+1 + "-" + date.getDate() + "  " + strTime;
+}
 
 function isEmpty(obj) {
 	return Object.keys(obj).length === 0;

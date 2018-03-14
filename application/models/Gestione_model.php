@@ -655,7 +655,7 @@ class Gestione_model extends CI_Model
             $data = $data['engineer_comments'];
             $dataComment = ($data == '')?array():json_decode($data);
             
-            $dataComment[] = array('type'=>$type, 'comment'=>$comment);
+            $dataComment[] = array('type'=>$type, 'date'=>date('Y-m-d H:i:s'), 'comment'=>$comment);
             
             $this->db->where('ID', $id);
             $this->db->update($tableName, array('engineer_comments'=>  json_encode($dataComment)));

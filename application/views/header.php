@@ -67,7 +67,11 @@
                     <p><?=rawurldecode($impostazioni[0]['titolo']); ?></p>
 				</a>
 				<!--logo end-->
-
+                                <?php if($this->session->userdata('user_type') == 'admin'){ ?>
+                                <div class="col-md-4 col-sm-4 col-xs-4 alert-danger" style="height: 100%">
+                                    <h4>admin</h4>
+                                </div>
+                                <?php } ?>
 				<div class="welcome">
 
 					<img alt="" src="<?=site_url('img/avatar1_small.jpg') ?>">

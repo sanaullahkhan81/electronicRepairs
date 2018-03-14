@@ -230,6 +230,7 @@ $lang['subtotal'] = 'SUBTOTAL';
 $lang['tax'] = 'TAX';
 $lang['total_inv'] = 'GRAND TOTAL';
 /* RESOCONTO */
+$lang['print_label'] = 'Print Label';
 $lang['resoconto'] = 'Report';
 $lang['print_resoconto'] = 'Print report';
 $lang['data_resoconto'] = 'Date of the report';

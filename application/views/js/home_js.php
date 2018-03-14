@@ -165,7 +165,9 @@ jQuery(document).ready(function() {
             cache: false,
             dataType: "json",
             success: function(data) {
-                var commentHtml = '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: right; margin: 10px; padding: 5px;"><b>My Comment</b><br/>'+jQuery('#text_comment').val()+'</div>';
+                var d = new Date();
+                var dateString = formatDate(d);
+                var commentHtml = '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: right; margin: 10px; padding: 5px;"><b>My Comment</b> ('+dateString+')<br/>'+jQuery('#text_comment').val()+'</div>';
                 jQuery('#conmments_section').append(commentHtml);
                 jQuery('#text_comment').val('');
             }
@@ -239,7 +241,7 @@ jQuery(document).ready(function() {
 
                         for(i = 0; i < engineer_comments.length; i++){
                             var obj = engineer_comments[i];
-                            commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b><br/>'+obj.comment+'</div>';
+                            commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b> ('+obj.date+')<br/>'+obj.comment+'</div>';
                         }
                         jQuery('#conmments_section').html(commentHtml);
                     }
@@ -257,7 +259,7 @@ jQuery(document).ready(function() {
                         jQuery('#pezzoc').html("No");
                     jQuery('#anticipoc').html(<?=$this->Impostazioni_model->get_money('data.Anticipo', false, true);?>);
                     jQuery('#prezzoc').html(<?=$this->Impostazioni_model->get_money('data.Prezzo', false, true);?>);
-                    var string = "<div class=\"right col-sm-12 col-lg-6 btn-group\"><button type=\"button\" data-num=\"" + data.ID + "\" id=\"salva_xml\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i> <?= lang('salva_xml'); ?></button><button type=\"button\" data-tipo=\"2\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('resoconto'); ?></button><button type=\"button\" data-tipo=\"1\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('invoice'); ?></button><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button></div><div class=\"col-sm-12 col-lg-6  btn-group left\"><button data-dismiss=\"modal\" id=\"elimina\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\" class=\"btn btn-danger\" type=\"button\"><i class=\"fa fa-trash-o \"></i> <?= lang('js_elimina'); ?></button>";
+                    var string = "<div class=\"right col-sm-12 col-lg-6 btn-group\"><button type=\"button\" data-num=\"" + data.ID + "\" id=\"salva_xml\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i> <?= lang('salva_xml'); ?></button><button type=\"button\" data-tipo=\"3\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('print_label'); ?></button><button type=\"button\" data-tipo=\"2\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('resoconto'); ?></button><button type=\"button\" data-tipo=\"1\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('invoice'); ?></button><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button></div><div class=\"col-sm-12 col-lg-6  btn-group left\"><button data-dismiss=\"modal\" id=\"elimina\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\" class=\"btn btn-danger\" type=\"button\"><i class=\"fa fa-trash-o \"></i> <?= lang('js_elimina'); ?></button>";
 
                     if ((data.Tipo == 1) && (data.status) == 1)
                         string = string + "<button id=\"inriparazione\" data-num=\"" + data.ID + "\" class=\"btn btn-info\" type=\"button\"><i class=\"fa fa-wrench \"></i> <?= lang('js_converti_inr'); ?></button>";
@@ -580,4 +582,15 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function formatDate(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return date.getFullYear() + "-" + date.getMonth()+1 + "-" + date.getDate() + "  " + strTime;
 }
