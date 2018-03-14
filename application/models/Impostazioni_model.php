@@ -54,18 +54,28 @@ class Impostazioni_model extends CI_Model
         return $data;
     }
     
-    public function getUserData(){
+    public function getUserData($notCheckEmployee = false){
         if($this->session->userdata('user_id')){
-            $userId = $this->session->userdata('user_id');
-            $userType = $this->session->userdata('user_type');
-            if($userType == 'employee'){
-                $userId = $this->session->userdata('store_id');
-            }
-            $this->db->where('user_id', $userId);
-            $query = $this->db->get('users_data');
-            if ($query->num_rows() > 0) {
-                $data = $query->result_array();
-                return $data[0];
+            if($notCheckEmployee == true){
+                $userId = $this->session->userdata('user_id');
+                $this->db->where('user_id', $userId);
+                $query = $this->db->get('users_data');
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    return $data[0];
+                }
+            }else{
+                $userId = $this->session->userdata('user_id');
+                $userType = $this->session->userdata('user_type');
+                if($userType == 'employee'){
+                    $userId = $this->session->userdata('store_id');
+                }
+                $this->db->where('user_id', $userId);
+                $query = $this->db->get('users_data');
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    return $data[0];
+                }
             }
         }
         return array();

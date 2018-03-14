@@ -78,8 +78,13 @@ class Login extends CI_Controller
 	// DO THE ADMIN LOGOUT //
     public function logout()
     {
+        $userType = $this->session->userdata('user_type');
         $this->session->sess_destroy();
-        redirect('/');
+        if($userType == 'employee'){
+            redirect('/employee');
+        }else{
+            redirect('/');
+        }
     }
 }
 

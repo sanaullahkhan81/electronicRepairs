@@ -39,7 +39,10 @@ class Employee extends CI_Controller
             $this->session->set_userdata('email', $userData['email']);
             $this->session->set_userdata('user_type', $userData['user_type']);
             $this->session->set_userdata('user_id', $userData['user_id']);
+            $this->session->set_userdata('store_id', $userData['store_id']);
             if($userData['user_type'] == 'employee'){
+                $employeeUserData = $this->Impostazioni_model->getUserData(true);
+                $this->session->set_userdata('user_name', $employeeUserData['name'].' '.$employeeUserData['lastname']);
                 $this->session->set_userdata('table_prefix', 'store_'.$userData['store_id'].'_');
             }else{
                 $this->session->set_userdata('table_prefix', 'store_'.$userData['user_id'].'_');

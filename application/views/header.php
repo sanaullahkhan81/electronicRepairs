@@ -67,17 +67,21 @@
                     <p><?=rawurldecode($impostazioni[0]['titolo']); ?></p>
 				</a>
 				<!--logo end-->
-                                <?php if($this->session->userdata('user_type') == 'admin'){ ?>
+                                <?php if($this->session->userdata('user_type') == 'employee'){ ?>
                                 <div class="col-md-4 col-sm-4 col-xs-4 alert-danger" style="height: 100%">
-                                    <h4>admin</h4>
+                                    <h4><?php echo $this->session->userdata('user_name');?></h4>
                                 </div>
-                                <?php } ?>
+                                <div class="welcome">
+                                    <a href="<?=site_url('login/logout'); ?>" class="log-out" style="font-size: 31px;"><i class="fa fa-power-off"></i>Exit</a>
+				</div>
+                                <?php }else{ ?>
 				<div class="welcome">
 
 					<img alt="" src="<?=site_url('img/avatar1_small.jpg') ?>">
                     <span class="welcome"><?=$this->lang->line('welcome_a');?> <?= $impostazioni[0]['invoice_name']; ?></span>
                     <a href="<?=site_url('login/logout'); ?>" class="log-out"><i class="fa fa-key"></i> <?=$this->lang->line('logout');?></a> <a href="<?=site_url(''); ?>"><i class="fa fa-home"></i> <?=$this->lang->line('js_torna_indietro');?></a>
 				</div>
+                                <?php } ?>
 			</header>
 			<!--header end-->
 			<!--sidebar start-->
