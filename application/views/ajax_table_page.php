@@ -33,11 +33,26 @@
         $style = $impostazioni[0]['colore5'];
         $stato_text = lang('nonriparato');
     }
+    
+    if ($ogg['engineer_status'] == 0) {
+        $styleEng = '#dddddd';
+        $status_text_eng = 'Not Sent';
+    } elseif ($ogg['engineer_status'] == 1) {
+        $styleEng = '#41cac0';
+        $status_text_eng = 'In Progress';
+    } elseif ($ogg['engineer_status'] == 2){
+        $styleEng = '#78CD51';
+        $status_text_eng = 'Completed';
+    } else {
+        $styleEng = '';
+        $status_text_eng = '';
+    }
 ?>
 
 {
 "id": <?= $ogg['ID']; ?>,
 "stato": "<span class='label label-mini' style='background: <?= $style; ?>;'><?= $stato_text; ?></span>",
+"status_eng": "<span class='label label-mini' style='background: <?= $styleEng; ?>;'><?= $status_text_eng; ?></span>",
 "cliente": "<a class='visualizza' data-dismiss='modal' href='#visualizza_clienti' data-toggle='modal' data-num='<?=  $ogg['ID_Nominativo']; ?>'><?=  $ogg['Nominativo']; ?></a>",
 "tipo": "<?php if ($ogg['Tipo'] == 1) {
         echo lang('js_tipo_ordine_pezzo');

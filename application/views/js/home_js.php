@@ -55,6 +55,34 @@ jQuery(document).ready(function() {
             jQuery('#pezzo1').attr("disabled", false);
         }
         
+        jQuery('#check-list-table').html('');
+        var terms = [];
+        var checkBefore = [];
+        var checkAfter = [];
+
+        jQuery('#check-list-table').html('');
+        
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "home/get_terms",
+            cache: false,
+            dataType: "json",
+            success: function(data) {
+                terms = data
+                var checkListHtml = '<table><thead><tr><th>Fault Check List</th><th>Before</th><th>After</th></tr></thead><tbody>';
+                for(i=0; i<terms.length; i++){
+                    checkListHtml += '<tr>';
+                    checkListHtml += '<td>'+terms[i].description+'</td>';
+                    checkListHtml += '<td><input type="checkbox" class="checklistbefore" value="'+terms[i].id+'" name="checklistbefore[]" '+(checkBefore.indexOf(terms[i].id)>-1?'checked':'')+'/></td>';
+                    checkListHtml += '<td><input type="checkbox" class="checklistafter" value="'+terms[i].id+'" name="checklistafter[]" '+(checkAfter.indexOf(terms[i].id)>-1?'checked':'')+'/></td>';
+                    checkListHtml += '</tr>';
+                }
+                checkListHtml += '</tbody></table>';
+
+                jQuery('#check-list-table').html(checkListHtml);
+            }
+        });
+                
         jQuery('#signature_image').hide();
         jQuery('#signature-pad').show();
                 
@@ -77,6 +105,17 @@ jQuery(document).ready(function() {
         var status = jQuery('#status_edit').val();
         var engineer_code = jQuery('#engineer_code').val();
         var sig_image = jQuery('#sig_img_name').val();
+        var checklistbefore = jQuery('.checklistbefore:checked').map(function() {
+                                                                    return this.value;
+                                                                })
+                                                                .get()
+                                                                .join();
+        var checklistafter = jQuery('.checklistafter:checked').map(function() {
+                                                                    return this.value;
+                                                                })
+                                                                .get()
+                                                                .join();
+        debugger;
         var custom = {};
 
         $(".modal-content .custom").each(function() {
@@ -108,7 +147,7 @@ jQuery(document).ready(function() {
 
             if (modo == "apri") {
                 url = base_url + "home/apri_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -128,7 +167,7 @@ jQuery(document).ready(function() {
                 });
             } else {
                 url = base_url + "home/modifica_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -213,6 +252,7 @@ jQuery(document).ready(function() {
                     jQuery('#commentic').html(data.Commenti);
                     jQuery('#cod_rip').html(data.codice);
                     jQuery('#btn_send_comment').data('num', num);
+                    jQuery('#btn-send-engineer').data('num', num);
                     jQuery('.show_custom').html('');
 
                     var IS_JSON = true;
@@ -233,24 +273,36 @@ jQuery(document).ready(function() {
                         });
                     }
                     
-                    var commentHtml = '';
-                    if(data.engineer_comments == ''){
-                    
+                    if(data.engineer_status == 0){
+                        $('#comment-engineer').hide();
+                        $('#btn-engineer').show();
                     }else{
-                        var engineer_comments = $.parseJSON(data.engineer_comments);
-
-                        for(i = 0; i < engineer_comments.length; i++){
-                            var obj = engineer_comments[i];
-                            commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b> ('+obj.date+')<br/>'+obj.comment+'</div>';
+                        if(data.engineer_status == 1){
+                            $('#send_comment_section').show();
+                        }else{
+                            $('#send_comment_section').hide();
                         }
-                        jQuery('#conmments_section').html(commentHtml);
+                        $('#btn-engineer').hide();
+                        $('#comment-engineer').show();
+                        var commentHtml = '';
+                        if(data.engineer_comments == ''){
+
+                        }else{
+                            var engineer_comments = $.parseJSON(data.engineer_comments);
+
+                            for(i = 0; i < engineer_comments.length; i++){
+                                var obj = engineer_comments[i];
+                                commentHtml += '<div style="width:70%; border: 1px solid #000; border-radius: 10px; float: '+((obj.type == 'eng')?'left':'right')+'; margin: 10px; padding: 5px;"><b>'+((obj.type == 'eng')?'Engineer Comment':'Store Comment')+'</b> ('+obj.date+')<br/>'+obj.comment+'</div>';
+                            }
+                            jQuery('#conmments_section').html(commentHtml);
+                        }
                     }
                     jQuery('#comment_id_num').val(num);
                     
-                    if(data.engineer_status == 1){
+                    if(data.engineer_status == 2){
                         $('#div_engineer_status').html('Engineer Status: <span class="label label-mini" style="background: #78CD51; width: auto;">Completed</span>');
                     }else{
-                        $('#div_engineer_status').html('Engineer Status: <span class="label label-mini" style="background: #41cac0; width: auto;">Im progress</span>');
+                        $('#div_engineer_status').html('Engineer Status: <span class="label label-mini" style="background: #41cac0; width: auto;">In progress</span>');
                     }
                     
                     if (data.Tipo == 1)
@@ -382,6 +434,24 @@ jQuery(document).ready(function() {
                         jQuery('#mo'+id_field).val(val_field);
                     });
                 }
+                
+                var terms = data.terms;
+                var checkBefore = (data.check_list_before != '')?data.check_list_before.split(','):[];
+                var checkAfter = (data.check_list_after != '')?data.check_list_after.split(','):[];
+                
+                jQuery('#check-list-table').html('');
+                
+                var checkListHtml = '<table style="width: 100%;"><thead><tr><th>Fault Check List</th><th>Before</th><th>After</th></tr></thead><tbody>';
+                for(i=0; i<terms.length; i++){
+                    checkListHtml += '<tr>';
+                    checkListHtml += '<td>'+terms[i].description+'</td>';
+                    checkListHtml += '<td><input type="checkbox" class="checklistbefore" value="'+terms[i].id+'" name="checklistbefore[]" '+(checkBefore.indexOf(terms[i].id)>-1?'checked':'')+'/></td>';
+                    checkListHtml += '<td><input type="checkbox" class="checklistafter" value="'+terms[i].id+'" name="checklistafter[]" '+(checkAfter.indexOf(terms[i].id)>-1?'checked':'')+'/></td>';
+                    checkListHtml += '</tr>';
+                }
+                checkListHtml += '</tbody></table>';
+                
+                jQuery('#check-list-table').html(checkListHtml);
                 
                 if(data.signature_image == '' || data.signature_image == 'null'){
                     jQuery('#sig_img_name').val(data.signature_image);
@@ -561,8 +631,22 @@ jQuery(document).ready(function() {
             }
         }
     );
-
-
+    
+    jQuery(document).on('click', '#btn-send-engineer', function(){
+        var num = jQuery(this).data("num");
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "home/sent_to_engineer",
+            data: "id=" + num,
+            cache: false,
+            success: function(data) {
+                $('#comment-engineer').show();
+                $('#btn-engineer').hide();
+                $('#send_comment_section').show();
+                $('#conmments_section').html('');
+            }
+        });
+    });
 });
 
 function randomString(len, charSet) {

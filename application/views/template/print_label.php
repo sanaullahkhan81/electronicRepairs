@@ -67,15 +67,32 @@
 <table class="printtable printContent" style="width:100%; padding:2px;">
   <tr>
     <th>Store Name</th>
-    <td><b><?= (isset($userData['name'])?$userData['name']:$impostazioni['invoice_name']);?></b></td>
+    <td><b><?= (isset($userData['name'])?$userData['name']:$impostazioni[0]['invoice_name']);?></b></td>
   </tr>
   <tr>
     <th>Store Code</th>
     <td><b><?= (isset($userData['store_code'])?$userData['store_code']:'');?></b></td>
   </tr>
   <tr>
+      <th>Order Date</th>
+      <td><b><?= $db['dataApertura']?></b></td>
+  </tr>
+  <tr>
     <th>Description</th>
     <td> <b><?=$db['Guasto'];?></b></td>
+  </tr>
+  <tr>
+      <th>Password</th>
+      <td><?php if(!empty($db['custom_field'])){
+          $customData = json_decode($db['custom_field']);
+          foreach($customData as $index=>$data){
+              if(bin2hex('password') == $index){
+                  echo $data;
+              }
+          }
+      }else{
+         echo 'No Password'; 
+      }?></td>
   </tr>
   <tr>
     <th> Engineer Code:</th>

@@ -131,7 +131,7 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group commenti">
+                                <div class="form-group commenti" id="send_comment_section">
                                     <input id="text_comment" class="col-md-8" type="text" value=""/><input class="col-md-4" type="button" id="btn_send_comment" value="Send Comment" data-num="">
                                 </div>
                             </div>

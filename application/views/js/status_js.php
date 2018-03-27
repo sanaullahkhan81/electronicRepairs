@@ -75,9 +75,14 @@ jQuery(document).ready(function () {
 				else {
 					toastr['success']("Repair found in the database", "You can check the comments about repair and also change status")
                     if(codeType == 'engineer'){
-                        if(data.engineer_status == 1) {var stato = "<span style='background-color: #78CD51;'>Completed</span>"; }
-                        else { var stato = "<span style='background-color: #41cac0;'>In progress</span>";}
-                        if(data.engineer_status != 1){
+                        if(data.engineer_status == 2) {
+                            var stato = "<span style='background-color: #78CD51;'>Completed</span>"; 
+                            $('#send_comment_section').hide();
+                        }else { 
+                            var stato = "<span style='background-color: #41cac0;'>In progress</span>";
+                            $('#send_comment_section').show();
+                        }
+                        if(data.engineer_status != 2){
                             $('#div_engineer_status').html('<a href="javascript:void(0)" id="engineer_mark_completed"><span class="label label-mini" style="background: #78CD51; width: auto;">Click To Mark As Completed</span></a>');
                         }
                     }else{

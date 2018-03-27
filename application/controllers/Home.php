@@ -247,12 +247,14 @@ class Home extends CI_Controller
             $token = $this->input->post('token', true);
             $engineer_code = $this->input->post('engineer_code', true);
             $sig_image = $this->input->post('sig_image', true);
+            $checklistbefore = $this->input->post('checklistbefore', true);
+            $checklistafter = $this->input->post('checklistafter', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image);
+            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $checklistbefore, $checklistafter);
 
             echo json_encode($data);
         } else {
@@ -284,13 +286,15 @@ class Home extends CI_Controller
             $email = $this->Gestione_model->email_from_id($idnominativo);
             $engineer_code = $this->input->post('engineer_code', true);
             $sig_image = $this->input->post('sig_image', true);
+            $checklistbefore = $this->input->post('checklistbefore', true);
+            $checklistafter = $this->input->post('checklistafter', true);
             $token = $this->input->post('token', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image);
+            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $checklistbefore, $checklistafter);
         } else {
             redirect('');
         }
@@ -301,6 +305,8 @@ class Home extends CI_Controller
     {
         $id = $this->input->post('id', true);
         $data = $this->Gestione_model->trova_oggetto($id);
+        $termsCondition = $this->Gestione_model->getTermsAndConditions();
+        $data['terms'] = $termsCondition;
         echo json_encode($data);
     }
 
@@ -396,6 +402,16 @@ class Home extends CI_Controller
             $uploadedDetails    = $this->upload->data();    
         }
         echo $uploadedDetails['file_name'];
+    }
+    
+    public function sent_to_engineer(){
+        $id = $this->input->post('id', true);
+        $this->Gestione_model->sendToEngineer($id);
+    }
+    
+    public function get_terms(){
+        $termsCondition = $this->Gestione_model->getTermsAndConditions();
+        echo json_encode($termsCondition);
     }
 }
 

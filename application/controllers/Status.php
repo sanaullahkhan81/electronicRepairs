@@ -69,7 +69,7 @@ class Status extends CI_Controller
         $tablePrefix = $this->Gestione_model->getTablePrefixForNonLoggedIn($eng_code, 'engineer');
         $tableName = $tablePrefix.'oggetti';
         $this->db->where(array('ID' => $id));
-        $this->db->update($tableName, array('engineer_status'=>1));
+        $this->db->update($tableName, array('engineer_status'=>2));
         echo json_encode(array('status'=>'success'));
     }
 }

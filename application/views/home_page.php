@@ -65,6 +65,19 @@
             <section class="panel">
                 <header class="panel-heading">
                     <?= $this->lang->line('o_e_r_titolo');?>
+                    <div class="pull-right">
+                        <select id="select_filters">
+                            <option value="">all</option>
+                            <option value="In progress">In progress</option>
+                            <option value="To be deliver">To be deliver</option>
+                            <option value="To be approved">To be approved</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Not Sent">Not Sent (Engineer)</option>
+                            <option value="In Progress eng">In Progress (Engineer)</option>
+                            <option value="Completed">Completed (Engineer)</option>
+                        </select>
+                    </div>
                 </header>
                 <div class="panel-body">
                     <div class="adv-table">
@@ -73,6 +86,9 @@
                                 <tr>
                                     <th>
                                        #
+                                    </th>
+                                    <th>
+                                        <?= $this->lang->line('Stato_t');?>
                                     </th>
                                     <th>
                                         <?= $this->lang->line('Stato_t');?>
@@ -108,6 +124,9 @@
                                 <tr>
                                     <th>
                                         <?= $this->lang->line('ID_t');?>
+                                    </th>
+                                    <th>
+                                        <?= $this->lang->line('Stato_t');?>
                                     </th>
                                     <th>
                                         <?= $this->lang->line('Stato_t');?>
@@ -161,7 +180,7 @@
 <script type="text/javascript"><?php include(FCPATH.'assets/js/drag_scroll.js'); ?></script>
 
 <script>
-    jQuery('#dynamic-table').dataTable({
+    var oTable = jQuery('#dynamic-table').dataTable({
         "ajax": "<?= site_url('home/ajax/1'); ?>",
         "order": [[ 0, "desc" ]],
         "lengthMenu": [[50, 100, 200, -1], [50, 100, 200, "All"]],
@@ -185,6 +204,8 @@
         }, {
             "data": "stato"
         }, {
+            "data": "status_eng"
+        }, {
             "data": "cliente"
         }, {
             "data": "tipo"
@@ -201,6 +222,24 @@
         }, {
             "data": "azioni"
         }]
+    });
+    
+    jQuery(document).ready(function(){
+        
+    }); 
+    
+    $('#select_filters').on('change',function(){
+        var selectedValue = $(this).val();
+        if(selectedValue == 'Not Sent' || selectedValue == 'In Progress eng' || selectedValue == 'Completed'){
+            if(selectedValue == 'In Progress eng'){
+                selectedValue = 'In Progress';
+            }
+            oTable.fnFilter('', 1, false);
+            oTable.fnFilter(selectedValue, 2, false);
+        }else{
+            oTable.fnFilter('', 2, false);
+            oTable.fnFilter(selectedValue, 1, false);
+        }
     });
 </script>
 

@@ -181,6 +181,19 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div> 
                             </div>
+                            <div class="col-lg-12 col-md-12">
+                                <button type="button" class="btn btn-dark col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section">Click for Open/Close Check List</button>
+                                <div id="terms-list-section" class="collapse col-lg-12 col-md-12">
+                                    <div id="check-list-table" class="col-lg-6 col-md-6"></div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <ol>
+                                            <li>All parts used during repair will be replacement parts not from original brand</li>
+                                            <li>Please take out any SIM and memory cards. We can not accept any responsibility or liability for these.</li>
+                                            <li>There are not refund policy in all repairs. If something is faulty we will try to re-fix the fault or will issue you with a credit note</li>
+                                        </ol> 
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -267,7 +280,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                         <textarea class="form-control" id="commentic" rows="6" disabled=""></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-4 bio-row">
+                                <div class="col-md-4 bio-row" id="comment-engineer">
                                     <div class="form-group commenti">
                                         <label>
                                             <?= $this->lang->line('engineer_comments');?>
@@ -277,10 +290,13 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                             
                                         </div>
                                     </div>
-                                    <div class="form-group commenti">
+                                    <div class="form-group commenti" id="send_comment_section">
                                         <input type="hidden" value="" id="comment_id_num"/>
                                         <input id="text_comment" type="text" value=""/><input type="button" id="btn_send_comment" value="Send Comment" data-num="">
                                     </div>
+                                </div>
+                                <div class="col-md-4 bio-row" id="btn-engineer">
+                                    <input type="button" id="btn-send-engineer" class="btn btn-dark" value="Send To Engineer"/>
                                 </div>
                             </div>
                         </div>

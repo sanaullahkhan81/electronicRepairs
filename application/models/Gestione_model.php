@@ -22,7 +22,7 @@ class Gestione_model extends CI_Model
 	| ADD THE ORDER/REPARATION TO DB
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type, txt 1 or 0, comments
 	|--------------------------------------------------------------------------*/
-    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '')
+    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '', $checklistbefore = '', $checklistafter = '')
     {
         $data = array(
             'Nominativo' => $nominativo,
@@ -46,6 +46,8 @@ class Gestione_model extends CI_Model
             'engineer_code' => $engineer_code,
             'signature_image' => $sig_image,
             'engineer_comments' => '',
+            'check_list_before' => $checklistbefore,
+            'check_list_after' => $checklistafter
         );
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
         $tableName = $tablePrefix.'oggetti';
@@ -189,7 +191,7 @@ class Gestione_model extends CI_Model
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type (order or reparation), id, txt 1 or 0, comments
 	|--------------------------------------------------------------------------
 	*/
-    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '')
+    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '', $checklistbefore = '', $checklistafter = '')
     {
 
         $custom = $custom;
@@ -213,6 +215,8 @@ class Gestione_model extends CI_Model
             'email' => $email,
             'engineer_code' => $engineer_code,
             'signature_image' => $sig_image,
+            'check_list_before' => $checklistbefore,
+            'check_list_after' => $checklistafter
         );
         
         
@@ -662,6 +666,14 @@ class Gestione_model extends CI_Model
         }
     }
     
+    public function sendToEngineer($id){
+        $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):'';
+        $tableName = $tablePrefix.'oggetti';
+        $this->db->where(array('ID' => $id));
+        $this->db->update($tableName, array('engineer_status'=>1));
+        echo json_encode(array('status'=>'success'));
+    }
+    
     public function getTablePrefixForNonLoggedIn($orderId, $type = 'id'){
         $this->db->order_by("id", "desc");
         if($type == 'status'){
@@ -677,5 +689,14 @@ class Gestione_model extends CI_Model
             return $prefix;
         }
         return '';
+    }
+    
+    public function getTermsAndConditions(){
+        $this->db->from('terms_and_conditions');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $data = $query->result_array();  
+        }
+        return $data;
     }
 }
