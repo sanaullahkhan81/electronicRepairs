@@ -76,10 +76,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'	=> '',
-    'hostname' => 'localhost',
-    'username' => 'testprojectuser',
-    'password' => 'dddeU*jnml42*7Nkl)',
-    'database' => 'epbuysco_repair',
+    'hostname' => 'shavaizdbinstance.cic3ojaw9saq.eu-west-2.rds.amazonaws.com',
+    'username' => 'shavaizec2db',
+    'password' => 'S&*(j#Fhik&y$1ha',
+    'database' => 'repair_database',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,

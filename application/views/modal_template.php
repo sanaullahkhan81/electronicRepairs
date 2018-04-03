@@ -186,10 +186,19 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 <div id="terms-list-section" class="collapse col-lg-12 col-md-12">
                                     <div id="check-list-table" class="col-lg-6 col-md-6"></div>
                                     <div class="col-lg-6 col-md-6">
+                                        <h3>Dear Customers, </h3></br>
                                         <ol>
                                             <li>All parts used during repair will be replacement parts not from original brand</li>
                                             <li>Please take out any SIM and memory cards. We can not accept any responsibility or liability for these.</li>
                                             <li>There are not refund policy in all repairs. If something is faulty we will try to re-fix the fault or will issue you with a credit note</li>
+                                            <li>Touch & LCD repair company only guarantee for color pixels or if touch not working. There is not refund or exchange for broken LCD or touch screens.</li>
+                                            <li>Any repair done by us will be covered by 14 days warranty if the same fault occurs, but this warranty will not cover any accident damage of Touch & LCD screens.</li>
+                                            <li>We only repair the fault that you phone come in for, if we repair the phone & on testing we notice it has additional faults, you will be quoted separately for those faults.</li>
+                                            <li>Any phone which is coming back for re-fix, during re-fix if we found an additional fault, you will be quoted separately for those faults.</li>
+                                            <li>If we successfully repair your phone and the phone turns out to be barred the quoted repair price will still stand.</li>
+                                            <li>Please indicate if the data on your phone is important and you would like us to try our best to save it. However we cannot guarantee your data and settings on the phone will be saved during our repairs or unlocking.</li>
+                                            <li>Our repairs will void your phone warranty. Please check you are happy with this before your hand over your phone.</li>
+                                            <li>You must pick up your device within 28 days of repairs. Company could not be responsible after 28 days once we confirm that your device is ready to be picked up</li>
                                         </ol> 
                                     </div>
                                 </div>
@@ -297,6 +306,28 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 </div>
                                 <div class="col-md-4 bio-row" id="btn-engineer">
                                     <input type="button" id="btn-send-engineer" class="btn btn-dark" value="Send To Engineer"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <button type="button" class="btn btn-dark col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section-2">Click for Open/Close Check List</button>
+                            <div id="terms-list-section-2" class="collapse col-lg-12 col-md-12">
+                                <div id="check-list-table-2" class="col-lg-6 col-md-6"></div>
+                                <div class="col-lg-6 col-md-6">
+                                    <h3>Dear Customers, </h3></br>
+                                    <ol>
+                                        <li>All parts used during repair will be replacement parts not from original brand</li>
+                                        <li>Please take out any SIM and memory cards. We can not accept any responsibility or liability for these.</li>
+                                        <li>There are not refund policy in all repairs. If something is faulty we will try to re-fix the fault or will issue you with a credit note</li>
+                                        <li>Touch & LCD repair company only guarantee for color pixels or if touch not working. There is not refund or exchange for broken LCD or touch screens.</li>
+                                        <li>Any repair done by us will be covered by 14 days warranty if the same fault occurs, but this warranty will not cover any accident damage of Touch & LCD screens.</li>
+                                        <li>We only repair the fault that you phone come in for, if we repair the phone & on testing we notice it has additional faults, you will be quoted separately for those faults.</li>
+                                        <li>Any phone which is coming back for re-fix, during re-fix if we found an additional fault, you will be quoted separately for those faults.</li>
+                                        <li>If we successfully repair your phone and the phone turns out to be barred the quoted repair price will still stand.</li>
+                                        <li>Please indicate if the data on your phone is important and you would like us to try our best to save it. However we cannot guarantee your data and settings on the phone will be saved during our repairs or unlocking.</li>
+                                        <li>Our repairs will void your phone warranty. Please check you are happy with this before your hand over your phone.</li>
+                                        <li>You must pick up your device within 28 days of repairs. Company could not be responsible after 28 days once we confirm that your device is ready to be picked up</li>
+                                    </ol> 
                                 </div>
                             </div>
                         </div>

@@ -65,7 +65,8 @@
             <section class="panel">
                 <header class="panel-heading">
                     <?= $this->lang->line('o_e_r_titolo');?>
-                    <div class="pull-right">
+                    <div class="pull-right" style="margin-top: -5px;">
+                        Status Filter: 
                         <select id="select_filters">
                             <option value="">all</option>
                             <option value="In progress">In progress</option>

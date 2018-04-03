@@ -273,6 +273,24 @@ jQuery(document).ready(function() {
                         });
                     }
                     
+                    var terms = data.terms;
+                    var checkBefore = (data.check_list_before != '')?data.check_list_before.split(','):[];
+                    var checkAfter = (data.check_list_after != '')?data.check_list_after.split(','):[];
+
+                    jQuery('#check-list-table-2').html('');
+
+                    var checkListHtml = '<table style="width: 100%;"><thead><tr><th>Fault Check List</th><th>Before</th><th>After</th></tr></thead><tbody>';
+                    for(i=0; i<terms.length; i++){
+                        checkListHtml += '<tr>';
+                        checkListHtml += '<td>'+terms[i].description+'</td>';
+                        checkListHtml += '<td><input type="checkbox" class="checklistbefore" value="'+terms[i].id+'" name="checklistbefore[]" '+(checkBefore.indexOf(terms[i].id)>-1?'checked':'')+' disabled/></td>';
+                        checkListHtml += '<td><input type="checkbox" class="checklistafter" value="'+terms[i].id+'" name="checklistafter[]" '+(checkAfter.indexOf(terms[i].id)>-1?'checked':'')+' disabled/></td>';
+                        checkListHtml += '</tr>';
+                    }
+                    checkListHtml += '</tbody></table>';
+
+                    jQuery('#check-list-table-2').html(checkListHtml);
+                    
                     if(data.engineer_status == 0){
                         $('#comment-engineer').hide();
                         $('#btn-engineer').show();
