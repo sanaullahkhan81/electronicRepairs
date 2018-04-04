@@ -49,6 +49,8 @@
         <script type="text/javascript" src="<?=site_url('home/js/validate');?>"></script>
 
         <div id="login_head">
+            <a href="/login" style="background: rgba(255, 255, 255, 0.45); float: right; margin: 0 10px 0; padding: 10px 30px; border: 1px solid rgba(255, 255, 255, 0.52); color: #e67e22; font-weight: bold;">LOGIN AREA</a>
+            <a href="/employee" style="background: rgba(255, 255, 255, 0.45); float: right; margin: 0 10px 0; padding: 10px 30px; border: 1px solid rgba(255, 255, 255, 0.52); color: #e67e22; font-weight: bold;">EMPLOYEE AREA</a>
             <img src="<?= ($impostazioni[0]['logo'] == 'default') ? site_url('img').'/logo_nav.png' : site_url('img').'/'.$impostazioni[0]['logo']; ?>">
         </div>
         <div style="clear: both;"></div>
