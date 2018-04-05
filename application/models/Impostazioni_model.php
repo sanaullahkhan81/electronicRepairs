@@ -358,4 +358,17 @@ class Impostazioni_model extends CI_Model
 
         return $timezone_list;
     }
+    
+    public function getAllStores(){
+        $this->db->select('users_data.name, users_data.store_code, users_data.user_id');
+        $this->db->from('impostazioni');
+        $this->db->join('users_data', 'users_data.user_id = impostazioni.id');
+        $this->db->where('impostazioni.user_type', 'store');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $data = $query->result_array();
+            return $data;
+        }
+        return array();
+    }
 }

@@ -48,6 +48,7 @@ class Home extends CI_Controller
             $data['n_riparazioni'] = $this->Gestione_model->conta_riparazioni();
             $data['n_clienti'] = $this->Gestione_model->conta_clienti();
             $data['lista_c'] = $this->Gestione_model->lista_clienti();
+            $data['stores'] = $this->Impostazioni_model->getAllStores();
             $this->load->view('home_page', $data);
         } else {
             $this->load->view('guest_page', $data);
@@ -412,6 +413,12 @@ class Home extends CI_Controller
     public function get_terms(){
         $termsCondition = $this->Gestione_model->getTermsAndConditions();
         echo json_encode($termsCondition);
+    }
+    
+    public function set_store(){
+        $store_id = $this->input->post('store_id', true);
+        $this->session->set_userdata('admin_selected_store', $store_id);
+        echo json_encode(array('status'=>'success'));
     }
 }
 

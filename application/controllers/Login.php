@@ -51,6 +51,9 @@ class Login extends CI_Controller
             $this->session->set_userdata('user_type', $userData['user_type']);
             $this->session->set_userdata('user_id', $userData['user_id']);
             $this->session->set_userdata('store_id', $userData['store_id']);
+            if($userData['user_type'] == 'admin'){
+                $this->session->set_userdata('admin_selected_store', 'my');
+            }
             if($userData['user_type'] == 'employee'){
                 $this->session->set_userdata('table_prefix', 'store_'.$userData['store_id'].'_');
             }else{

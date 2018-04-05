@@ -37,6 +37,7 @@ class Clienti extends CI_Controller
             $data['n_clienti'] = $this->Gestione_model->conta_clienti();
             $data['lista_c'] = $this->Gestione_model->lista_clienti();
             $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
+            $data['stores'] = $this->Impostazioni_model->getAllStores();
             $this->load->view('clienti_page', $data);
         } else {
             redirect('');

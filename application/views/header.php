@@ -75,6 +75,19 @@
                                     <a href="<?=site_url('login/logout'); ?>" class="log-out" style="font-size: 31px;"><i class="fa fa-power-off"></i>Exit</a>
 				</div>
                                 <?php }else{ ?>
+                                    <?php if ('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('') || 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] == site_url('clienti/')) {?>
+                                        <?php if($this->session->userdata('user_type') == 'admin'){ ?>
+                                        <div style="height: 100%; vertical-align: middle; float: left; padding-top: 16px;">
+                                            <label style="color:black;">Select Store: </label>
+                                            <select id="store_dropdown" >
+                                                <option value="my">Admin Entries</option>
+                                                <?php foreach($stores as $store){ ?>
+                                                <option value="<?php echo $store['user_id']; ?>" <?php echo ($this->session->userdata('admin_selected_store') == $store['user_id'])?'selected':'';?>><?php echo $store['name']." (".$store['store_code'].")"; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <?php } ?>
+                                    <?php } ?>
 				<div class="welcome">
 
 					<img alt="" src="<?=site_url('img/avatar1_small.jpg') ?>">
