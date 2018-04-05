@@ -150,7 +150,7 @@ Thank you for your Visit
   `send_email` int(11) NOT NULL,
   `email` text COLLATE utf8_unicode_ci NOT NULL,
   `engineer_code` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `engineer_status` int(11) DEFAULT NULL,
+  `engineer_status` int(11) NOT NULL DEFAULT '0',
   `engineer_comments` longtext COLLATE utf8_unicode_ci,
   `signature_image` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `check_list_before` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
