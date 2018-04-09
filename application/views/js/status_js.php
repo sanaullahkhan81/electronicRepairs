@@ -83,7 +83,7 @@ jQuery(document).ready(function () {
                             $('#send_comment_section').show();
                         }
                         if(data.engineer_status != 2){
-                            $('#div_engineer_status').html('<a href="javascript:void(0)" id="engineer_mark_completed"><span class="label label-mini" style="background: #78CD51; width: auto;">Click To Mark As Completed</span></a>');
+                            $('#div_engineer_status').html('<a href="javascript:void(0)" id="engineer_mark_completed"><span class="btn col-md-12" style="background: #78CD51; width: auto;">Click To Mark As Completed</span></a>');
                         }
                     }else{
                         if(data.status == 0) {var stato = "<span style='background-color: #d61a1a;'>Delivered</span>"; }
@@ -115,7 +115,7 @@ jQuery(document).ready(function () {
 					jQuery('#telefonoc').html(data.Telefono);
 					jQuery('#cod_rip').html(data.codice);
                                         jQuery('#comment_id_num').val(data.ID);
-                                        alert(data.engineer_code);
+                                        
                                         jQuery('#comment_code_eng').val(data.engineer_code);
                     
 					jQuery('.centre_box.status_box').fadeIn(1000);

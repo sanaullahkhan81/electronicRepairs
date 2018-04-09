@@ -182,7 +182,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 </div> 
                             </div>
                             <div class="col-lg-12 col-md-12">
-                                <button type="button" class="btn btn-dark col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section">Click for Open/Close Check List</button>
+                                <button type="button" class="btn btn-primary col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section">Click for Open/Close Check List</button>
                                 <div id="terms-list-section" class="collapse col-lg-12 col-md-12">
                                     <div id="check-list-table" class="col-lg-6 col-md-6"></div>
                                     <div class="col-lg-6 col-md-6">
@@ -310,7 +310,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12">
-                            <button type="button" class="btn btn-dark col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section-2">Click for Open/Close Check List</button>
+                            <button type="button" class="btn btn-primary col-lg-12 col-md-12 col-sm-12" data-toggle="collapse" data-target="#terms-list-section-2">Click for Open/Close Check List</button>
                             <div id="terms-list-section-2" class="collapse col-lg-12 col-md-12">
                                 <div id="check-list-table-2" class="col-lg-6 col-md-6"></div>
                                 <div class="col-lg-6 col-md-6">

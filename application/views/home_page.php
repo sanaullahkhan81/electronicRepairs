@@ -92,7 +92,7 @@
                                         <?= $this->lang->line('Stato_t');?>
                                     </th>
                                     <th>
-                                        <?= $this->lang->line('Stato_t');?>
+                                        <?= $this->lang->line('Status_Eng');?>
                                     </th>
                                     <th>
                                         <?= $this->lang->line('Cliente_t');?>
@@ -130,7 +130,7 @@
                                         <?= $this->lang->line('Stato_t');?>
                                     </th>
                                     <th>
-                                        <?= $this->lang->line('Stato_t');?>
+                                        <?= $this->lang->line('Status_Eng');?>
                                     </th>
                                     <th>
                                         <?= $this->lang->line('Cliente_t');?>

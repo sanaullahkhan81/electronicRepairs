@@ -127,15 +127,15 @@
                                 <div class="form-group commenti">
                                     <label>
                                         <?= $this->lang->line('engineer_comments');?>
-                                        <div class="pull-right" id="div_engineer_status"></div>
                                     </label>
-                                    <div id="conmments_section" style="overflow: auto; height: 500px; border: 1px solid #dddddd">
+                                    <div id="conmments_section" style="overflow: auto; height: 250px; border: 1px solid #dddddd">
 
                                     </div>
                                 </div>
-                                <div class="form-group commenti" id="send_comment_section">
+                                <div class="form-group col-md-12" id="send_comment_section">
                                     <input id="text_comment" class="col-md-8" type="text" value=""/><input class="col-md-4" type="button" id="btn_send_comment" value="Send Comment" data-num="">
                                 </div>
+                                <div class="pull-right" id="div_engineer_status"></div>
                             </div>
 
                         </div>

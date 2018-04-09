@@ -69,6 +69,7 @@ $lang['ID_t'] = 'ID';
 $lang['Apertoil_t'] = 'Opened at';
 $lang['Chiusoil_t'] = 'Closed at';
 $lang['Stato_t'] = 'Condition';
+$lang['Status_Eng'] = 'Engineer Status';
 $lang['Cliente_t'] = 'Customer';
 $lang['Tipo_t'] = 'Type';
 $lang['Modello_t'] = 'Model';
