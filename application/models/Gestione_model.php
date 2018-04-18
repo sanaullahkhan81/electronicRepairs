@@ -22,7 +22,7 @@ class Gestione_model extends CI_Model
 	| ADD THE ORDER/REPARATION TO DB
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type, txt 1 or 0, comments
 	|--------------------------------------------------------------------------*/
-    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '', $checklistbefore = '', $checklistafter = '')
+    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $checklistbefore = '', $checklistafter = '')
     {
         $data = array(
             'Nominativo' => $nominativo,
@@ -45,6 +45,7 @@ class Gestione_model extends CI_Model
             'email' => $email,
             'engineer_code' => $engineer_code,
             'signature_image' => $sig_image,
+            'signature_image_collected' => $sig_image_collected,
             'engineer_comments' => '',
             'check_list_before' => $checklistbefore,
             'check_list_after' => $checklistafter
@@ -191,7 +192,7 @@ class Gestione_model extends CI_Model
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type (order or reparation), id, txt 1 or 0, comments
 	|--------------------------------------------------------------------------
 	*/
-    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '', $checklistbefore = '', $checklistafter = '')
+    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $checklistbefore = '', $checklistafter = '')
     {
 
         $custom = $custom;
@@ -215,6 +216,7 @@ class Gestione_model extends CI_Model
             'email' => $email,
             'engineer_code' => $engineer_code,
             'signature_image' => $sig_image,
+            'signature_image_collected' => $sig_image_collected,
             'check_list_before' => $checklistbefore,
             'check_list_after' => $checklistafter
         );

@@ -68,7 +68,7 @@
                                 <?=$this->lang->line('employee_login_desc');?>
                             </p>
                             <div class="iconic-input right">
-                                <input id="employee_login_code" name="employee_login_code" type="text" class="validate form-control" placeholder="<?=$this->lang->line('employee_code');?>" value="">
+                                <input id="employee_login_code" name="employee_login_code" type="password" class="validate form-control" placeholder="<?=$this->lang->line('employee_code');?>" value="">
                             </div>
                         </div>
                     </div>

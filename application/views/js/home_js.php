@@ -105,6 +105,7 @@ jQuery(document).ready(function() {
         var status = jQuery('#status_edit').val();
         var engineer_code = jQuery('#engineer_code').val();
         var sig_image = jQuery('#sig_img_name').val();
+        var sig_image_collected = jQuery('#sig_img_name_collected').val();
         var checklistbefore = jQuery('.checklistbefore:checked').map(function() {
                                                                     return this.value;
                                                                 })
@@ -147,7 +148,7 @@ jQuery(document).ready(function() {
 
             if (modo == "apri") {
                 url = base_url + "home/apri_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -167,7 +168,7 @@ jQuery(document).ready(function() {
                 });
             } else {
                 url = base_url + "home/modifica_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,

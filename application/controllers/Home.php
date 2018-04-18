@@ -248,6 +248,7 @@ class Home extends CI_Controller
             $token = $this->input->post('token', true);
             $engineer_code = $this->input->post('engineer_code', true);
             $sig_image = $this->input->post('sig_image', true);
+            $sig_image_collected = $this->input->post('sig_image_collected', true);
             $checklistbefore = $this->input->post('checklistbefore', true);
             $checklistafter = $this->input->post('checklistafter', true);
 
@@ -255,7 +256,7 @@ class Home extends CI_Controller
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $checklistbefore, $checklistafter);
+            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $checklistbefore, $checklistafter);
 
             echo json_encode($data);
         } else {
@@ -287,6 +288,7 @@ class Home extends CI_Controller
             $email = $this->Gestione_model->email_from_id($idnominativo);
             $engineer_code = $this->input->post('engineer_code', true);
             $sig_image = $this->input->post('sig_image', true);
+            $sig_image_collected = $this->input->post('sig_image_collected', true);
             $checklistbefore = $this->input->post('checklistbefore', true);
             $checklistafter = $this->input->post('checklistafter', true);
             $token = $this->input->post('token', true);
@@ -295,7 +297,7 @@ class Home extends CI_Controller
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $checklistbefore, $checklistafter);
+            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $checklistbefore, $checklistafter);
         } else {
             redirect('');
         }

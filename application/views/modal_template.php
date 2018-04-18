@@ -148,7 +148,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>
                                         <?= $this->lang->line('Commenti_t');?>
@@ -164,7 +164,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                         <canvas></canvas>
                                     </div>
                                     <div class="signature-pad--footer">
-                                        <div class="description">Sign above</div>
+                                        <div class="description">Agree Terms</div>
 
                                         <div class="signature-pad--actions">
                                             <div>
@@ -176,6 +176,31 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                                 <button type="button" class="button save" data-action="save-png">Save</button>
                                                 <button type="button" class="button save" data-action="save-jpg" style="display: none;">Save as JPG</button>
                                                 <button type="button" class="button save" data-action="save-svg" style="display: none;">Save as SVG</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="hidden" id="sig_img_name_collected" value=""/>
+                                <image id="signature_image_collected" src="" style="display: none;"/>
+                                <div id="signature-pad_collected" class="signature-pad_collected">
+                                    <div class="signature-pad_collected--body">
+                                        <canvas></canvas>
+                                    </div>
+                                    <div class="signature-pad_collected--footer">
+                                        <div class="description">Collected the phone</div>
+
+                                        <div class="signature-pad_collected--actions">
+                                            <div>
+                                                <button type="button" class="button clear" data-action="clear_collected">Clear</button>
+                                                <button type="button" class="button" data-action="change-color_collected" style="display: none;">Change color</button>
+                                                <button type="button" class="button" data-action="undo_collected" style="display: none;">Undo</button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="button save" data-action="save-png_collected">Save</button>
+                                                <button type="button" class="button save" data-action="save-jpg_collected" style="display: none;">Save as JPG</button>
+                                                <button type="button" class="button save" data-action="save-svg_collected" style="display: none;">Save as SVG</button>
                                             </div>
                                         </div>
                                     </div>

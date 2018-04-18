@@ -26,6 +26,7 @@ if (!$impostazioni[0]['showcredit']) {
 <script><?php include(FCPATH.'js/signature_pad.js');?></script>
 <script type="text/javascript" src="<?=site_url().'home/js/common'; ?>"></script>
 <script><?php include(FCPATH.'js/app.js');?></script>
+<script><?php include(FCPATH.'js/collected_sign.js');?></script>
 <script>
 	;(function($){
 		$("#lingua").select2({placeholder: "<?=$this->lang->line('seleziona_lingua_select');?>"});
