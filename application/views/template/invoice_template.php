@@ -1,7 +1,9 @@
 <?php
 $tasse = ($impostazioni[0]['tax'] / 100) * $db['Prezzo'];
 $senza_tasse = ($db['Prezzo']) - (($impostazioni[0]['tax'] / 100) * $db['Prezzo']); // PRICE WITHOUT TAX
+$advance = $db['Anticipo'];
 $totale = $db['Prezzo']; // PRICE WITH TAX
+$balanceToPay = $totale - $advance;
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@ if(isset($cliente['cf']))
                 <div class="email"><a href="mailto:<?=$cliente['email']; ?>"><?=$cliente['email']; ?></a></div>
             </div>
             <div id="invoice" contentEditable="true">
-                <h1><?= lang('invoice_n');?> <i>0000</i></h1>
+                <h1><?= lang('invoice_n');?> <i><?= $storedata['name']."-".$storedata['code']."-".$db['ID'] ?></i></h1>
                 <div class="date"><?= lang('data_fattura');?>: <?= date_format(date_create($db['dataChiusura']),"Y/m/d"); ?></div>
             </div>
         </div>
@@ -78,7 +80,7 @@ if(isset($cliente['cf']))
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" rowspan="3" id="commenti"><textarea id="commento" onkeyup="auto_grow(this)" contentEditable="true"><?=$db['Commenti']; ?></textarea></td>
+                    <td colspan="2" rowspan="4" id="commenti"><textarea id="commento" onkeyup="auto_grow(this)" contentEditable="true"><?=$db['Commenti']; ?></textarea></td>
                     <td colspan="2"><?= lang('subtotal');?></td>
                     <td contentEditable="true"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
                 </tr>
@@ -87,8 +89,12 @@ if(isset($cliente['cf']))
                     <td contentEditable="true"><?=$this->Impostazioni_model->get_money($tasse);?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><?= lang('total_inv');?></td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($totale);?></td>
+                    <td colspan="2"><?= lang('advance_paid');?></td>
+                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($advance);?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><?= lang('balance_to_pay');?></td>
+                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($balanceToPay);?></td>
                 </tr>
             </tfoot>
         </table>

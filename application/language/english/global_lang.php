@@ -230,6 +230,8 @@ $lang['quantity'] = 'Quantity';
 $lang['subtotal'] = 'SUBTOTAL';
 $lang['tax'] = 'TAX';
 $lang['total_inv'] = 'GRAND TOTAL';
+$lang['advance_paid'] = 'ADVANCE PAID';
+$lang['balance_to_pay'] = 'BALANCE TO PAY';
 /* RESOCONTO */
 $lang['print_label'] = 'Print Label';
 $lang['resoconto'] = 'Report';

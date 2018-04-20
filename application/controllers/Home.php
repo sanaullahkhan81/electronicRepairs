@@ -64,6 +64,7 @@ class Home extends CI_Controller
             $data['cliente'] = $this->Gestione_model->trova_cliente($this->Gestione_model->id_from_name($data['db']['Nominativo']));
             $data['valuta'] = $this->Impostazioni_model->get_currency();
             $data['lingua'] = $this->Impostazioni_model->get_lingua();
+            $data['storedata'] = $this->Gestione_model->getStoreData();
             if($tipo == 3){
                 $data['userData'] = $this->Impostazioni_model->getUserData();
             }

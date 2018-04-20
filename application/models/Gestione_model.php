@@ -710,4 +710,18 @@ class Gestione_model extends CI_Model
             return '';
         }
     }
+    
+    public function getStoreData(){
+        if($this->session->userdata('user_type') != 'admin'){
+            $storeId = $this->session->userdata('store_id');
+            $this->db->from('users_data');
+            $query = $this->db->get();
+            if ($query->num_rows() > 0) {
+                $data = $query->result_array();
+                return array('name'=>$data[0]['name'], 'code'=>$data[0]['store_code']);
+            }
+        }else{
+            return array('name'=>'Admin', 'code'=>'0000');
+        }
+    }
 }
