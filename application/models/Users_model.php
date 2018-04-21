@@ -97,6 +97,7 @@ Thank you for your Visit
                                 'background_transition' => '0',
                                 'timezone' => 'Europe/London',
                                 'user_type' => 'store',
+                                'store_id' => $store_data['id']
                            );
         $this->db->insert('impostazioni', $dataImpostArray);
         $user_id = $this->db->insert_id();

@@ -98,6 +98,22 @@ if(isset($cliente['cf']))
                 </tr>
             </tfoot>
         </table>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td colspan="5" style="background: none; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="background: none; padding: 0px;">Track your order on</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="background: none; padding: 0px;"><a href="//www.pos.i-techuk.com" target="_blank">www.pos.i-techuk.com</a></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="background: none; padding: 0px;">Tracking code: <?= $db['codice'];?></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <footer>
         <?= $impostazioni[0]['disclaimer']; ?>
