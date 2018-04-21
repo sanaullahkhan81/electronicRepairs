@@ -96,8 +96,7 @@ Thank you for your Visit
                                 'email_smtp_closed_text' => '',
                                 'background_transition' => '0',
                                 'timezone' => 'Europe/London',
-                                'user_type' => 'store',
-                                'store_id' => $store_data['id']
+                                'user_type' => 'store'
                            );
         $this->db->insert('impostazioni', $dataImpostArray);
         $user_id = $this->db->insert_id();
@@ -111,7 +110,9 @@ Thank you for your Visit
                                 'user_id' => $user_id,
                           );
         $this->db->insert('users_data', $dataUsersArray);
-        
+        $store_id = $this->db->insert_id();
+        $this->db->where('id', $user_id);
+        $this->db->update('impostazioni', array('store_id'=>$store_id));
         // creating tables in database 
         $query = "CREATE TABLE `store_".$user_id."_clienti` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
