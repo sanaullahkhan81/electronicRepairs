@@ -22,7 +22,7 @@ class Gestione_model extends CI_Model
 	| ADD THE ORDER/REPARATION TO DB
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type, txt 1 or 0, comments
 	|--------------------------------------------------------------------------*/
-    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $checklistbefore = '', $checklistafter = '')
+    public function inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom,  $codice, $send_email, $email = false, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $advPaymentType = '', $checklistbefore = '', $checklistafter = '')
     {
         $data = array(
             'Nominativo' => $nominativo,
@@ -50,6 +50,11 @@ class Gestione_model extends CI_Model
             'check_list_before' => $checklistbefore,
             'check_list_after' => $checklistafter
         );
+        
+        if($anticipo > 0){
+            $data['advance_type'] = $advPaymentType;
+        }
+        
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):$this->getTablePrefixForAdmin();
         $tableName = $tablePrefix.'oggetti';
         $this->db->insert($tableName, $data);
@@ -192,7 +197,7 @@ class Gestione_model extends CI_Model
 	| @param Customer name, phone number, category, model, problem, piece, advance, price, type (order or reparation), id, txt 1 or 0, comments
 	|--------------------------------------------------------------------------
 	*/
-    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $checklistbefore = '', $checklistafter = '')
+    public function salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code = '', $sig_image = '', $sig_image_collected = '', $advPaymentType = '', $checklistbefore = '', $checklistafter = '')
     {
 
         $custom = $custom;
@@ -221,6 +226,9 @@ class Gestione_model extends CI_Model
             'check_list_after' => $checklistafter
         );
         
+        if($anticipo > 0){
+            $data['advance_type'] = $advPaymentType;
+        }
         
         $ogg = $this->trova_oggetto($id);
 
@@ -487,12 +495,13 @@ class Gestione_model extends CI_Model
 	| @param Order ID
 	|--------------------------------------------------------------------------
 	*/
-    public function completa_oggetto($id)
+    public function completa_oggetto($id, $paymentType = '')
     {
         $tablePrefix = ($this->session->userdata('user_type') != 'admin')?$this->session->userdata('table_prefix'):$this->getTablePrefixForAdmin();
         $tableName = $tablePrefix.'oggetti';
         $data = array(
             'status' => 0,
+            'remaining_type' => $paymentType,
             'dataChiusura' => date('Y-m-d H:i:s'),
         );
         $this->db->where('ID', $id);

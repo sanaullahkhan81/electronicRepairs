@@ -85,6 +85,9 @@ jQuery(document).ready(function() {
                 
         jQuery('#signature_image').hide();
         jQuery('#signature-pad').show();
+        
+        jQuery('#signature_image_collected').hide();
+        jQuery('#signature-pad_collected').show();
                 
         jQuery('#footerOR1').html("<div class=\"btn-group btn-group-justified left\"> <select id=\"status_edit\" class=\"form-control m-bot15\"><option value=\"1\"><?= lang('incorso'); ?></option><option value=\"3\"><?= lang('inattesa'); ?></option><option value=\"2\"><?= lang('daconsegnare'); ?></option><option value=\"0\"><?= lang('completato'); ?></option><option value=\"5\"><?= lang('nonriparato'); ?></option></select> <input id=\"codice\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(8) + "\" placeholder=\"<?= lang('codice'); ?>\"><label style=\"float:left;\">Engineer code</label><input id=\"engineer_code\" type=\"text\" class=\"validate form-control\" value=\"" +  randomString(10) + "\" placeholder=\"Secret code (For Engineer check)\"></div><div class=\"btn-group btn-group-justified right\"><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button><button id='submitOR' class='btn btn-success' data-tipo=" + tipo + " data-modo='apri'><i class=\"fa fa-plus-circle\"></i> <?= lang('js_aggiungi'); ?></a></div>");
     });
@@ -106,6 +109,7 @@ jQuery(document).ready(function() {
         var engineer_code = jQuery('#engineer_code').val();
         var sig_image = jQuery('#sig_img_name').val();
         var sig_image_collected = jQuery('#sig_img_name_collected').val();
+        var adv_payment_type = jQuery('#payment_type').val();
         var checklistbefore = jQuery('.checklistbefore:checked').map(function() {
                                                                     return this.value;
                                                                 })
@@ -148,7 +152,7 @@ jQuery(document).ready(function() {
 
             if (modo == "apri") {
                 url = base_url + "home/apri_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&adv_payment_type=" + encodeURIComponent(adv_payment_type) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -168,7 +172,7 @@ jQuery(document).ready(function() {
                 });
             } else {
                 url = base_url + "home/modifica_ordine";
-                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&token=<?=$_SESSION['token'];?>";
+                dataString = "nominativo=" + encodeURIComponent(nominativo) + "&categoria=" + encodeURIComponent(categoria) + "&modello=" + encodeURIComponent(modello) + "&guasto=" + encodeURIComponent(guasto) + "&pezzo=" + encodeURIComponent(pezzo) + "&anticipo=" + encodeURIComponent(anticipo) + "&prezzo=" + encodeURIComponent(prezzo) + "&tipo=" + encodeURIComponent(tipo) + "&id=" + encodeURIComponent(id) + "&sms=" + encodeURIComponent(sms) + "&send_email=" + encodeURIComponent(send_email) + "&commenti=" + encodeURIComponent(commenti) + "&codice=" + encodeURIComponent(codice) + "&status=" + encodeURIComponent(status) + "&custom=" + encodeURIComponent(JSON.stringify(custom)) + "&sig_image=" + encodeURIComponent(sig_image) + "&sig_image_collected=" + encodeURIComponent(sig_image_collected) + "&engineer_code=" + encodeURIComponent(engineer_code) + "&checklistbefore=" + encodeURIComponent(checklistbefore) + "&checklistafter=" + encodeURIComponent(checklistafter) + "&adv_payment_type=" + encodeURIComponent(adv_payment_type) + "&token=<?=$_SESSION['token'];?>";
                 jQuery.ajax({
                     type: "POST",
                     url: url,
@@ -329,6 +333,9 @@ jQuery(document).ready(function() {
                     else
                         jQuery('#pezzoc').html("No");
                     jQuery('#anticipoc').html(<?=$this->Impostazioni_model->get_money('data.Anticipo', false, true);?>);
+                    if(data.Anticipo > 0){
+                        jQuery('#payment_type_c').html(data.advance_type);
+                    }
                     jQuery('#prezzoc').html(<?=$this->Impostazioni_model->get_money('data.Prezzo', false, true);?>);
                     var string = "<div class=\"right col-sm-12 col-lg-6 btn-group\"><button type=\"button\" data-num=\"" + data.ID + "\" id=\"salva_xml\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i> <?= lang('salva_xml'); ?></button><button type=\"button\" data-tipo=\"3\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('print_label'); ?></button><button type=\"button\" data-tipo=\"2\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('resoconto'); ?></button><button type=\"button\" data-tipo=\"1\" data-num=\"" + data.ID + "\" id=\"stampa\" class=\"btn btn-default\"><i class=\"fa fa-print\"></i> <?= lang('invoice'); ?></button><button data-dismiss=\"modal\" class=\"btn btn-default\" type=\"button\"><i class=\"fa fa-reply\"></i> <?= lang('js_torna_indietro'); ?></button></div><div class=\"col-sm-12 col-lg-6  btn-group left\"><button data-dismiss=\"modal\" id=\"elimina\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\" class=\"btn btn-danger\" type=\"button\"><i class=\"fa fa-trash-o \"></i> <?= lang('js_elimina'); ?></button>";
 
@@ -338,7 +345,13 @@ jQuery(document).ready(function() {
                         string = string + "<button id=\"modifica\" data-dismiss=\"modal\" href=\"#obj\" data-toggle=\"modal\" data-num=\"" + data.ID + "\" class=\"btn btn-success\"><i class=\"fa fa-pencil\"></i> <?= lang('modifica'); ?></button><button type=\"button\" id=\"daconsegnare\" class=\"btn btn-primary\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\"><i class=\"fa fa-check\"></i> <?= lang('daconsegnare'); ?></button>";
                     }
                     if (data.status == 2) {
-                        string = string + "<button id=\"modifica\" data-dismiss=\"modal\" href=\"#obj\" data-toggle=\"modal\" data-num=\"" + data.ID + "\" class=\"btn btn-success\"><i class=\"fa fa-pencil\"></i> <?= lang('modifica'); ?></button><button type=\"button\" id=\"completa\" class=\"btn btn-primary\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\"><i class=\"fa fa-check\"></i> <?= lang('completato'); ?></button>";
+                        string = string + "<button id=\"modifica\" data-dismiss=\"modal\" href=\"#obj\" data-toggle=\"modal\" data-num=\"" + data.ID + "\" class=\"btn btn-success\"><i class=\"fa fa-pencil\"></i> <?= lang('modifica'); ?></button>";
+                        string = string + "<button type=\"button\" id=\"completaPopup\" class=\"btn btn-primary\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\" ><i class=\"fa fa-check\"></i> <?= lang('completato'); ?></button>";
+                        string = string + '<div class="col-md-4 col-sm-4" id="completaPaymentSelection" style="display: none;">';
+                        string = string + "<p>You remaining amount is "+(data.Prezzo - data.Anticipo)+" please select payment method and click Ok.</p>";
+                        string = string + '<select id="select_camplata_type"><option value="">Please select payment method</option><option value="cash">Cash</option><option value="card">Card</option></select>';
+                        string = string + "<button class=\"btn btn-danger\" onclick=\"(function(){jQuery('#completaPaymentSelection').hide();return false;})();return false;\">cancel</button><button class=\"btn btn-primary\" id=\"completa\" data-num=\"" + data.ID + "\" data-tipo=\"" + data.Tipo + "\">Ok</button>";
+                        string = string + '</div>';
                     }
 
                     if (data.status == 3) {
@@ -433,7 +446,11 @@ jQuery(document).ready(function() {
                 jQuery('#anticipo1').val(data.Anticipo);
                 jQuery('#prezzo1').val(data.Prezzo);
                 jQuery('#commenti1').val(data.Commenti);
-
+                if ( jQuery('#payment_type option[value="'+data.advance_type+'"]').length ) {
+                    jQuery('#payment_type option[value="'+data.advance_type+'"]').attr("selected", "selected")
+                }
+                jQuery("#payment_type").select2();
+                
                 $(".modal-content .custom").val('');
 
                 var IS_JSON = true;
@@ -482,6 +499,18 @@ jQuery(document).ready(function() {
                     jQuery('#signature_image').show();
                     jQuery('#signature-pad').hide();
                 }
+                
+                if(data.signature_image_collected == '' || data.signature_image_collected == 'null'){
+                    jQuery('#sig_img_name_collected').val(data.signature_image_collected);
+                    jQuery('#signature_image_collected').hide();
+                    jQuery('#signature-pad_collected').show();
+                }else{
+                    jQuery('#signature_image_collected').attr('src', '/uploads/'+data.signature_image_collected);
+                    jQuery('#sig_img_name_collected').val(data.signature_image_collected);
+                    jQuery('#signature_image_collected').show();
+                    jQuery('#signature-pad_collected').hide();
+                }
+                
                 if (data.sms == 1)
                     jQuery('#sms').prop('checked', true);
                 else
@@ -535,14 +564,22 @@ jQuery(document).ready(function() {
         });
     });
 
-
+    jQuery(document).on("click", "#completaPopup", function(){
+        $('#completaPaymentSelection').show();
+    });
+    
     jQuery(document).on("click", "#completa", function() {
+        if(jQuery('#select_camplata_type').val() == ''){
+            alert('Please select payment method first');
+            return false;
+        }
         var num = jQuery(this).data("num");
         var tipo = jQuery(this).data("tipo");
+        var payment_type = jQuery('#select_camplata_type').val()
         jQuery.ajax({
             type: "POST",
             url: base_url + "home/completa",
-            data: "id=" + encodeURIComponent(num) + "&token=<?=$_SESSION['token'];?>",
+            data: "id=" + encodeURIComponent(num) + "&rem_payment_type=" + encodeURIComponent(payment_type) + "&token=<?=$_SESSION['token'];?>",
             cache: false,
             dataType: "json",
             success: function(data) {

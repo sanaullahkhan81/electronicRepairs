@@ -86,7 +86,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-2 col-sm-6">
                                 <div class="form-group">
                                     <label>
                                         <?= $this->lang->line('Anticipo_t');?>
@@ -94,6 +94,19 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     <div class="iconic-input"><i class="fa fa-ticket"></i>
                                         <input id="anticipo1" type="text" class="validate form-control">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-6">
+                                <div class="form-group">
+                                    <label>
+                                        <?= $this->lang->line('payment_type');?>
+                                    </label>
+                                    <!--<div class="iconic-input">-->
+                                    <select id="payment_type" type="text" class="validate form-control" style="width: 100%">
+                                        <option value="cash">Cash</option>
+                                        <option value="card">Card</option>
+                                    </select>
+                                    <!--</div>-->
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-12">
@@ -273,7 +286,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                             <p><span class="bold"><i class="fa fa-puzzle-piece"></i> <?= $this->lang->line('Pezzo_t');?> </span><span id="pezzoc"></span></p>
                         </div>
                         <div class="col-md-12 col-lg-4 bio-row">
-                            <p><span class="bold"><i class="fa fa-money"></i> <?= $this->lang->line('Anticipo_t');?></span><span id="anticipoc"></span></p>
+                            <p><span class="bold"><i class="fa fa-money"></i> <?= $this->lang->line('Anticipo_t');?></span><span id="anticipoc"></span><span id="payment_type_c"></span></p>
                         </div>
                         <div class="col-md-12 col-lg-4 bio-row nofloat">
                             <p><span class="bold"><i class="fa fa-money"></i> <?= $this->lang->line('Prezzo_t');?> </span><span id="prezzoc"></span></p>

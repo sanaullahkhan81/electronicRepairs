@@ -252,12 +252,13 @@ class Home extends CI_Controller
             $sig_image_collected = $this->input->post('sig_image_collected', true);
             $checklistbefore = $this->input->post('checklistbefore', true);
             $checklistafter = $this->input->post('checklistafter', true);
+            $advPaymentType = $this->input->post('adv_payment_type', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $checklistbefore, $checklistafter);
+            $data = $this->Gestione_model->inserisci_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $advPaymentType, $checklistbefore, $checklistafter);
 
             echo json_encode($data);
         } else {
@@ -292,13 +293,14 @@ class Home extends CI_Controller
             $sig_image_collected = $this->input->post('sig_image_collected', true);
             $checklistbefore = $this->input->post('checklistbefore', true);
             $checklistafter = $this->input->post('checklistafter', true);
+            $advPaymentType = $this->input->post('adv_payment_type', true);
             $token = $this->input->post('token', true);
 
             if($_SESSION['token'] != $token) die('CSRF Attempts');
 
             $this->add_new_cat($categoria); // ADD CATEGORY IF NOT EXISTS //
 
-            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $checklistbefore, $checklistafter);
+            echo $this->Gestione_model->salva_ordine($nominativo, $idnominativo, $telefono, $categoria, $modello, $guasto, $pezzo, $anticipo, $prezzo, $tipo, $id, $sms, $commenti, $status, $custom, $codice, $send_email, $email, $engineer_code, $sig_image, $sig_image_collected, $advPaymentType, $checklistbefore, $checklistafter);
         } else {
             redirect('');
         }
@@ -330,11 +332,12 @@ class Home extends CI_Controller
     public function completa()
     {
         $id = $this->input->post('id', true);
+        $paymentType = $this->input->post('rem_payment_type', true);
         $token = $this->input->post('token', true);
 
         if($_SESSION['token'] != $token) die('CSRF Attempts');
 
-        $data = $this->Gestione_model->completa_oggetto($id);
+        $data = $this->Gestione_model->completa_oggetto($id, $paymentType);
         echo json_encode($data);
     }
 

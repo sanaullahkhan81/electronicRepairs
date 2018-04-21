@@ -75,6 +75,7 @@ $lang['Tipo_t'] = 'Type';
 $lang['Modello_t'] = 'Model';
 $lang['Categoria_t'] = 'Category';
 $lang['Anticipo_t'] = 'Advance';   /* (payment) */
+$lang['payment_type'] = 'Payment Type';
 $lang['Prezzo_t'] = 'Price';
 $lang['PrezzoR_t'] = 'Repair price';
 $lang['Pezzo_t'] = 'Piece';

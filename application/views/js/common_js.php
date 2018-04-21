@@ -11,4 +11,14 @@ jQuery(document).ready(function() {
             }
         });
     });
+    
+    jQuery(document).ajaxStart(function(){
+        jQuery('#ajax_loader').show();
+        var topPosition = jQuery(document).scrollTop();
+        jQuery('#ajax_loader').css({top:topPosition+'px'});
+    });
+
+    jQuery(document).ajaxStop(function(){
+        jQuery('#ajax_loader').hide();
+    });
 });

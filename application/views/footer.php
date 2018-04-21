@@ -36,6 +36,8 @@ if (!$impostazioni[0]['showcredit']) {
 	})(jQuery);
 </script> 
 
-
+    <div id='ajax_loader' style="width: 100%; height: 100%; background: #ffffff; opacity: 0.5; position: absolute; text-align: center; vertical-align: middle; top: 0; left: 0; display: none; z-index: 9999; padding-top: 150px;">
+        <img src="assets/images/ajax-loader.gif"></img>
+    </div>
   </body>
 </html>
