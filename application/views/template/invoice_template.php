@@ -80,7 +80,7 @@ if(isset($cliente['cf']))
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" rowspan="4" id="commenti"><textarea id="commento" onkeyup="auto_grow(this)" contentEditable="true"><?=$db['Commenti']; ?></textarea></td>
+                    <td colspan="2" rowspan="<?php echo ($db['status'] == 0)?5:4;?>" id="commenti"></td>
                     <td colspan="2"><?= lang('subtotal');?></td>
                     <td contentEditable="true"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
                 </tr>
@@ -92,9 +92,15 @@ if(isset($cliente['cf']))
                     <td colspan="2"><?= lang('advance_paid');?></td>
                     <td contentEditable="true"><?=$this->Impostazioni_model->get_money($advance);?></td>
                 </tr>
+                <?php if($db['status'] == 0){ ?>
+                <tr>
+                    <td colspan="2"><?= lang('remaining_paid');?></td>
+                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($balanceToPay);?></td>
+                </tr>
+                <?php } ?>
                 <tr>
                     <td colspan="2"><?= lang('balance_to_pay');?></td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($balanceToPay);?></td>
+                    <td contentEditable="true">0</td>
                 </tr>
             </tfoot>
         </table>

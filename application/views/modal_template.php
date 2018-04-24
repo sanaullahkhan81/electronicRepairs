@@ -343,7 +343,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                                 <div class="col-md-4 bio-row" id="btn-engineer">
-                                    <input type="button" id="btn-send-engineer" class="btn btn-dark" value="Send To Engineer"/>
+                                    <input type="button" id="btn-send-engineer" class="btn btn-dark btn-primary" value="Send To Engineer"/>
                                 </div>
                             </div>
                         </div>
