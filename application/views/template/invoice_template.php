@@ -20,7 +20,7 @@ echo $stile;
 echo '</style>';
     ?>
     <body>
-        <div id="editable_invoice"><?= lang('editable_invoice');?></div>
+        <!--<div id="editable_invoice"><?= lang('editable_invoice');?></div>-->
         <header class="clearfix">
             <div id="company" contentEditable="false">
                 <h2 class="name"><?= $impostazioni[0]['titolo']; ?></h2>
@@ -100,7 +100,7 @@ if(isset($cliente['cf']))
                 <?php } ?>
                 <tr>
                     <td colspan="2"><?= lang('balance_to_pay');?></td>
-                    <td contentEditable="false">0</td>
+                    <td contentEditable="false"><?php echo ($db['status'] == 0)?0:$this->Impostazioni_model->get_money($balanceToPay)?></td>
                 </tr>
             </tfoot>
         </table>
