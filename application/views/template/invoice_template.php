@@ -22,7 +22,7 @@ echo '</style>';
     <body>
         <div id="editable_invoice"><?= lang('editable_invoice');?></div>
         <header class="clearfix">
-            <div id="company" contentEditable="true">
+            <div id="company" contentEditable="false">
                 <h2 class="name"><?= $impostazioni[0]['titolo']; ?></h2>
                 <div><?= $impostazioni[0]['invoice_name']; ?></div>
                 <div><?= $impostazioni[0]['indirizzo']; ?></div>
@@ -34,7 +34,7 @@ echo '</style>';
         </header>
     <main>
         <div id="details" class="clearfix">
-            <div id="client" contentEditable="true">
+            <div id="client" contentEditable="false">
                 <div class="to"><?= lang('Cliente_t');?>:</div>
                 <h2 class="name"><?=$db['Nominativo']; ?></h2>
                 <div class="address"><?=($cliente['indirizzo']); ?></div>
@@ -54,7 +54,7 @@ if(isset($cliente['cf']))
                 </div>
                 <div class="email"><a href="mailto:<?=$cliente['email']; ?>"><?=$cliente['email']; ?></a></div>
             </div>
-            <div id="invoice" contentEditable="true">
+            <div id="invoice" contentEditable="false">
                 <h1><?= lang('invoice_n');?> <i><?= $storedata['name']."-".$storedata['code']."-".$db['ID'] ?></i></h1>
                 <div class="date"><?= lang('data_fattura');?>: <?= date_format(date_create($db['dataChiusura']),"Y/m/d"); ?></div>
             </div>
@@ -69,7 +69,7 @@ if(isset($cliente['cf']))
                     <th class="total"><?= lang('Prezzo_t');?></th>
                 </tr>
             </thead>
-            <tbody contentEditable="true">
+            <tbody contentEditable="false">
                 <tr>
                     <td class="no">01</td>
                     <td class="desc"><h3><?php if($db['Tipo'] == 2) {echo lang('js_tipo_riparazione').': '.$db['Guasto'].' '.$db['Modello']; } else { echo $db['Pezzo'].' '.$db['Modello'];} ?></td>
@@ -82,25 +82,25 @@ if(isset($cliente['cf']))
                 <tr>
                     <td colspan="2" rowspan="<?php echo ($db['status'] == 0)?5:4;?>" id="commenti"></td>
                     <td colspan="2"><?= lang('subtotal');?></td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
+                    <td contentEditable="false"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
                 </tr>
                 <tr>
                     <td colspan="2"><?= lang('tax');?> <?= $impostazioni[0]['tax']; ?>%</td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($tasse);?></td>
+                    <td contentEditable="false"><?=$this->Impostazioni_model->get_money($tasse);?></td>
                 </tr>
                 <tr>
                     <td colspan="2"><?= lang('advance_paid');?></td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($advance);?></td>
+                    <td contentEditable="false"><?=$this->Impostazioni_model->get_money($advance);?></td>
                 </tr>
                 <?php if($db['status'] == 0){ ?>
                 <tr>
                     <td colspan="2"><?= lang('remaining_paid');?></td>
-                    <td contentEditable="true"><?=$this->Impostazioni_model->get_money($balanceToPay);?></td>
+                    <td contentEditable="false"><?=$this->Impostazioni_model->get_money($balanceToPay);?></td>
                 </tr>
                 <?php } ?>
                 <tr>
                     <td colspan="2"><?= lang('balance_to_pay');?></td>
-                    <td contentEditable="true">0</td>
+                    <td contentEditable="false">0</td>
                 </tr>
             </tfoot>
         </table>
