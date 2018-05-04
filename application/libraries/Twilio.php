@@ -54,7 +54,7 @@
 		
 		public function get()
 		{
-			$impostazioni = $this->_ci->Impostazioni_model->lista_impostazioni();
+			$impostazioni = $this->_ci->Impostazioni_model->lista_impostazioni(true);
 			return $impostazioni;
 		}
 

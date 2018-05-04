@@ -29,7 +29,7 @@ class Impostazioni extends CI_Controller
 	// SHOW THE SETTINGS PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $data['timezones'] = $this->Impostazioni_model->get_timezones_list();
         $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
         
@@ -97,6 +97,7 @@ class Impostazioni extends CI_Controller
 	// SAVE THE SETTING //
     public function salva_impostazioni()
     {
+        $s_user_id = $this->input->post('s_user_id', true);
         $titolo = $this->input->post('titolo', true);
         $lingua = $this->input->post('lingua', true);
         $auser = $this->input->post('auser', true);
@@ -156,7 +157,7 @@ class Impostazioni extends CI_Controller
 
 		if($_SESSION['token'] != $token) die('CSRF Attempts');
 
-        $data = $this->Impostazioni_model->aggiorna_impostazioni($titolo, $lingua, $disclaimer, $auser, $apass, $usesms, $s_user, $s_pass, $s_name, $s_method, $t_mode,$t_account_sid,$t_auth_token,$t_number, $prefix, $r_apertura, $r_chiusura, $email_sender, $email_subject, $email_use_smtp, $email_smtp_host, $email_smtp_user, $email_smtp_pass, $email_smtp_port, $email_smtp_open_text, $email_smtp_closed_text, $showcredit, $rtl_support, $transition_background, $valuta, $name, $mail, $address, $phone, $vat, $type, $tax, $cat, $colore1, $colore2, $colore3, $colore4, $colore5, $colore_prim, $campi, $stampadue, $printinonepage, $currency_symbol,  $currency_text, $currency_position, $timezone);
+        $data = $this->Impostazioni_model->aggiorna_impostazioni($titolo, $lingua, $disclaimer, $auser, $apass, $usesms, $s_user, $s_pass, $s_name, $s_method, $t_mode,$t_account_sid,$t_auth_token,$t_number, $prefix, $r_apertura, $r_chiusura, $email_sender, $email_subject, $email_use_smtp, $email_smtp_host, $email_smtp_user, $email_smtp_pass, $email_smtp_port, $email_smtp_open_text, $email_smtp_closed_text, $showcredit, $rtl_support, $transition_background, $valuta, $name, $mail, $address, $phone, $vat, $type, $tax, $cat, $colore1, $colore2, $colore3, $colore4, $colore5, $colore_prim, $campi, $stampadue, $printinonepage, $currency_symbol,  $currency_text, $currency_position, $timezone, $s_user_id);
         echo json_encode($data);
     }
 }

@@ -107,7 +107,7 @@ class Home extends CI_Controller
     {
         if ($this->session->userdata('LoggedIn')) 
         {
-            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
 
             $data['lista'] = $this->Gestione_model->lista_oggetti();
             $data['lista_c'] = $this->Gestione_model->lista_clienti();
@@ -131,7 +131,7 @@ class Home extends CI_Controller
         {
             if($id == null) $id = $this->input->post('id', true);
 
-            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
 
             $data['ordine'] = $this->Gestione_model->trova_oggetto($id);
             $data['cliente'] = $this->Gestione_model->trova_cliente($data['ordine']['ID_Nominativo']);
@@ -198,7 +198,7 @@ class Home extends CI_Controller
     // GENERATE THE JAVASCRIPT DYNAMIC FILE //
     public function js($name)
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $data['valuta'] = $this->Impostazioni_model->get_currency();
         if($this->input->cookie('waslogged',true) == 1) $data['admin'] = 1;
         else $data['admin'] = 0;
@@ -212,7 +212,7 @@ class Home extends CI_Controller
     public function ajax($table, $id_nome = null)
     {
         if ($this->session->userdata('LoggedIn')) {
-            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
             if($table == 1) 
             {
                 if($id_nome == null) $data['lista'] = $this->Gestione_model->lista_oggetti();
@@ -380,7 +380,7 @@ class Home extends CI_Controller
     // ADD NEW CAT IF NOT EXISTS //
     public function add_new_cat($cat)
     {
-        $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+        $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
         $exist = 0;
         foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $line){
             if($line == $cat) $exist = 1;

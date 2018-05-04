@@ -86,7 +86,7 @@ class Impostazioni_model extends CI_Model
 	| @param title, lang, disclaimer, admin username, admin password, sms services used, skebby username, skebby password, skebby name, skebby method, showcredit [1/0],
 	| currency, invoice name, invoice mail, invoice address, invoice phone, invoice VAT, invoice type [EU/US], tax amount, category
 	|--------------------------------------------------------------------------*/
-    public function aggiorna_impostazioni($titolo, $lingua, $disclaimer, $auser, $apass, $usesms, $skebby_user, $skebby_pass, $skebby_name, $skebby_method, $twilio_mode, $twilio_account_sid, $twilio_auth_token, $twilio_number, $prefix, $r_apertura, $r_chiusura, $email_sender, $email_subject, $email_use_smtp, $email_smtp_host, $email_smtp_user, $email_smtp_pass, $email_smtp_port, $email_smtp_open_text, $email_smtp_closed_text, $showcredit, $rtl_support, $transition_background, $valuta, $name, $mail, $address, $phone, $vat, $type, $tax, $cat, $colore1, $colore2, $colore3, $colore4, $colore5, $colore_prim, $campi, $stampadue, $printinonepage, $currency_symbol, $currency_text, $currency_position, $timezone)
+    public function aggiorna_impostazioni($titolo, $lingua, $disclaimer, $auser, $apass, $usesms, $skebby_user, $skebby_pass, $skebby_name, $skebby_method, $twilio_mode, $twilio_account_sid, $twilio_auth_token, $twilio_number, $prefix, $r_apertura, $r_chiusura, $email_sender, $email_subject, $email_use_smtp, $email_smtp_host, $email_smtp_user, $email_smtp_pass, $email_smtp_port, $email_smtp_open_text, $email_smtp_closed_text, $showcredit, $rtl_support, $transition_background, $valuta, $name, $mail, $address, $phone, $vat, $type, $tax, $cat, $colore1, $colore2, $colore3, $colore4, $colore5, $colore_prim, $campi, $stampadue, $printinonepage, $currency_symbol, $currency_text, $currency_position, $timezone, $s_user_id)
     {
         $data = array(
             'titolo' => $titolo,
@@ -141,6 +141,7 @@ class Impostazioni_model extends CI_Model
             'currency_position' =>   $currency_position,
             'timezone' =>   $timezone
         );
+        $this->db->where('id', $s_user_id);
         $this->db->update('impostazioni', $data);
     }
 	
@@ -149,10 +150,11 @@ class Impostazioni_model extends CI_Model
 	-------------------------------------------------------------------------*/
 	public function add_category($category)	
 	{
-		$imp = $this->lista_impostazioni();
+		$imp = $this->lista_impostazioni(true);
 		$data = array(
 			'categorie' => $category.PHP_EOL.$imp[0]['categorie'],
 		);
+                $this->db->where('id', $imp[0]['id']);
 		$this->db->update('impostazioni', $data);
 	}
 	
@@ -244,10 +246,11 @@ class Impostazioni_model extends CI_Model
 	-------------------------------------------------------------------------*/
     public function salva_logo($logo)	
     {
-        $imp = $this->lista_impostazioni();
+        $imp = $this->lista_impostazioni(true);
         $data = array(
             'logo' => $logo,
         );
+        $this->db->where('id', $imp[0]['id']);
         $this->db->update('impostazioni', $data);
     }
     
@@ -258,7 +261,7 @@ class Impostazioni_model extends CI_Model
 
         if($def || !$colore || !$alfa)
         {
-            $impostazioni = $this->lista_impostazioni();
+            $impostazioni = $this->lista_impostazioni(true);
             $data['colore'] = $impostazioni[0]['colore_prim'];
             $data['alfa'] = $this->Impostazioni_model->hex2rgba($data['colore'], 0.05);
         }

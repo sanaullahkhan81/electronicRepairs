@@ -31,7 +31,7 @@ class Clienti extends CI_Controller
 	// PRINT A CUSTOMERS PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         if ($this->session->userdata('LoggedIn')) {
             $data['lista'] = $this->Gestione_model->lista_clienti();
             $data['n_clienti'] = $this->Gestione_model->conta_clienti();

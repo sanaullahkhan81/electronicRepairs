@@ -62,14 +62,14 @@ class Gestione_model extends CI_Model
 
         if ($sms == 1) 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_sms($telefono, $impostazioni[0]['r_apertura'], $nominativo, $modello, $codice, $id);
         }
 
 
         if ($send_email == 1 && $email != '') 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_email( $email, $impostazioni[0]['r_apertura'], $nominativo, $modello, $codice, $id);
         }
         
@@ -234,14 +234,14 @@ class Gestione_model extends CI_Model
 
         if ($sms == 1 && $ogg['status'] != $status && $status == 2) 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_sms($telefono, $impostazioni[0]['r_chiusura'], $nominativo, $modello, $codice, $id);
         }
         
 
         if ($send_email == 1 && $email != '' && $ogg['status'] != $status && $status == 2) 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_email( $email, $impostazioni[0]['r_chiusura'], $nominativo, $modello, $codice, $id);
         }
         
@@ -547,13 +547,13 @@ class Gestione_model extends CI_Model
 
         if ($ogg['sms'] == 1) 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_sms($ogg['Telefono'], $impostazioni[0]['r_chiusura'], $ogg['Nominativo'], $ogg['Modello'], $ogg['codice'], $id);
         }
 
         if ($ogg['send_email'] == 1 && $ogg['email'] != '') 
         {
-            $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+            $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
             $this->send_email( $ogg['email'], $impostazioni[0]['r_chiusura'], $ogg['Nominativo'], $ogg['Modello'], $ogg['codice'], $id);
         }
     }
@@ -565,7 +565,7 @@ class Gestione_model extends CI_Model
 	*/
     public function send_sms($numero, $testo, $nominativo = '', $modello = '', $codice = '', $id = '')
     {
-        $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+        $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
         $search  = array('%businessname%', '%customer%', '%model%', '%fixbookurl%', '%statuscode%', '%id%');
         $replace = array($impostazioni[0]['titolo'], $nominativo, $modello, site_url(), $codice, $id);
         $testo = str_replace($search, $replace, $testo);
@@ -591,7 +591,7 @@ class Gestione_model extends CI_Model
 	*/
     public function send_email($email, $testo, $nominativo = '', $modello = '', $codice = '', $id = '')
     {
-        $impostazioni = $this->Impostazioni_model->lista_impostazioni();
+        $impostazioni = $this->Impostazioni_model->lista_impostazioni(true);
         $search  = array('%businessname%', '%customer%', '%model%', '%fixbookurl%', '%statuscode%', '%id%');
         $replace = array($impostazioni[0]['titolo'], $nominativo, $modello, site_url(), $codice, $id);
         $testo = str_replace($search, $replace, $testo);

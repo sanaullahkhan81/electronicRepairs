@@ -22,7 +22,7 @@ class Employee extends CI_Controller
         if ($this->session->userdata('LoggedIn')) {
             redirect('');
         } else {
-            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+            $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
             $this->load->view('employee_login', $data);
         }
     }

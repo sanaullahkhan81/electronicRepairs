@@ -29,7 +29,7 @@ class Status extends CI_Controller
 	// SHOW THE STATUS PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $this->load->view('status_page', $data);
     }
 	

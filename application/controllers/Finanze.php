@@ -29,7 +29,7 @@ class Finanze extends CI_Controller
 	// PRINT A FINANCIAL PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $data['valuta'] = $this->Impostazioni_model->get_currency();
         $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
         if ($this->session->userdata('LoggedIn')) {
@@ -44,7 +44,7 @@ class Finanze extends CI_Controller
     public function data($mese, $anno)
     {
         $data['valuta'] = $this->Impostazioni_model->get_currency();
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
         if ($this->session->userdata('LoggedIn')) {
             if (isset($mese) && isset($anno)) {

@@ -20,6 +20,7 @@ toastr.options = {
 
 jQuery(document).on("click", "#submit", function () {
 
+var s_user_id = jQuery('#s_user_id').val(); 
 var nome = jQuery('#nomesito').val();
 var lingua = jQuery('#lingua').val();
 var disclaimer = jQuery('#disclaimer').val();

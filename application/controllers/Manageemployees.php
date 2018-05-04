@@ -29,7 +29,7 @@ class Manageemployees extends CI_Controller
 	// SHOW THE SETTINGS PAGE //
     public function index()
     {
-        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni();
+        $data['impostazioni'] = $this->Impostazioni_model->lista_impostazioni(true);
         if ($this->session->userdata('LoggedIn')) {
             $data['total_users'] = $this->Users_model->get_total_employees();            
             $data['stile'] = $this->Impostazioni_model->get_custom_style(1);
