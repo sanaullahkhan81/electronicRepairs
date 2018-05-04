@@ -402,7 +402,7 @@ foreach($campi as $line){
 								<label class="title">
 									<?= lang('skebby_title');?>
 								</label>
-                                                                <input type="hidden" id="s_user_id" value="<?= $impostazioni[0]['skebby_user']; ?>"/>
+                                                                <input type="hidden" id="s_user_id" value="<?= $impostazioni[0]['id']; ?>"/>
 								<input id="s_user" type="text" class="validate form-control" placeholder="<?= lang('skebby_user');?>" value="<?= $impostazioni[0]['skebby_user']; ?>">
 								<input id="s_password" type="text" class="validate form-control" placeholder="<?= lang('skebby_password');?>" value="<?= $impostazioni[0]['skebby_pass']; ?>">
 								<input id="s_sender" type="text" class="validate form-control" placeholder="<?= lang('skebby_sender');?>" value="<?= $impostazioni[0]['skebby_name']; ?>">
