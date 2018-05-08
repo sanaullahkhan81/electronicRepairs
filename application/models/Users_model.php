@@ -158,6 +158,8 @@ Thank you for your Visit
   `signature_image_collected` varchar(150) COLLATE utf8_unicode_ci DEFAULT '',
   `check_list_before` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `check_list_after` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `advance_type` varchar(45) COLLATE utf8_unicode_ci DEFAULT '',
+  `remaining_type` varchar(45) COLLATE utf8_unicode_ci DEFAULT ''
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $this->db->query($query1);

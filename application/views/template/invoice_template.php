@@ -72,7 +72,7 @@ if(isset($cliente['cf']))
             <tbody contentEditable="false">
                 <tr>
                     <td class="no">01</td>
-                    <td class="desc"><h3><?php if($db['Tipo'] == 2) {echo lang('js_tipo_riparazione').': '.$db['Guasto'].' '.$db['Modello']; } else { echo $db['Pezzo'].' '.$db['Modello'];} ?></td>
+                    <td class="desc"><h3><?php echo lang('js_tipo_riparazione').': '.$db['Guasto'].' '.$db['Modello']; ?></td>
                     <td class="unit"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
                     <td class="qty">1</td>
                     <td class="total"><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>

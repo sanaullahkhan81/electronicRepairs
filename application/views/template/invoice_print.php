@@ -76,7 +76,7 @@ echo '</style>';
             
                 <tr>
                     <td> 01</td>
-                    <td ><?php if($db['Tipo'] == 2) {echo lang('js_tipo_riparazione').': '.$db['Guasto'].' '.$db['Modello']; } else { echo $db['Pezzo'].' '.$db['Modello'];} ?></td>
+                    <td ><?php echo lang('js_tipo_riparazione').': '.$db['Guasto'].' '.$db['Modello'];?></td>
                     <td ><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
                     <td >1</td>
                     <td ><?=$this->Impostazioni_model->get_money($senza_tasse);?></td>
