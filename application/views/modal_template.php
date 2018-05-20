@@ -539,7 +539,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                     <p class="tips custip"></p>
                     <div class="row">
                         <form class="col s12">
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('nome');?></label>
                                     <div class="iconic-input"><i class="fa  fa-user"></i>
@@ -547,7 +547,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('cognome');?></label>
                                     <div class="iconic-input"><i class="fa  fa-user"></i>
@@ -555,7 +555,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('indirizzo');?></label>
                                     <div class="iconic-input"><i class="fa fa-road"></i>
@@ -563,7 +563,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('citta');?></label>
                                     <div class="iconic-input"><i class="fa fa-globe"></i>
@@ -571,7 +571,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('Telefono_t');?></label>
                                     <div class="iconic-input"><i class="fa fa-phone"></i>
@@ -579,7 +579,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('email');?></label>
                                     <div class="iconic-input"><i class="fa fa-envelope"></i>
@@ -587,7 +587,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('vat');?></label>
                                     <div class="iconic-input"><i class="fa fa-envelope"></i>
@@ -595,7 +595,7 @@ foreach(preg_split("/((\r?\n)|(\r\n?))/", $impostazioni['0']['categorie']) as $l
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-6 input-field">
+                            <div class="col-lg-6 input-field">
                                 <div class="form-group">
                                     <label><?=$this->lang->line('cf');?></label>
                                     <input id="cf1"  class="validate form-control"></textarea>
