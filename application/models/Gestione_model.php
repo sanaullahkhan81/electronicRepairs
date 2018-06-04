@@ -723,6 +723,15 @@ class Gestione_model extends CI_Model
     public function getStoreData(){
         if($this->session->userdata('user_type') != 'admin'){
             $storeId = $this->session->userdata('store_id');
+            if($this->session->userdata('user_type') == 'employee'){
+                $this->db->from('impostazioni');
+                $this->db->where('id', $storeId);
+                $query = $this->db->get();
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    $storeId = $data[0]['store_id'];
+                }
+            }            
             $this->db->from('users_data');
             $this->db->where('id', $storeId);
             $query = $this->db->get();
